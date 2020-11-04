@@ -1,0 +1,61 @@
+EXPRESIONES REGULARES
+Tecnicas que se usan para evaluar/validar o buscar un string determinado, el contenido que este tiene. Por ejemplo, un correo, numero de telefono, etc. 
+Funcionan como reglas de validacion. 
+Aplicable a varios lenguajes de programacion (de hecho grep en linux lo usa). En todos se arman y validan de la misma forma. 
+
+PRUEBA DE REGEX ONLINE.
+https://regex101.com
+https://regexr.com/3bfsi
+
+La expresion regular se puede armar con / / afuera de la expresion. En JS, la clase RegExp lo convierte a una expresion regular. 
+
+Se define un patron y se aplica en la frase sobre la cual se va a buscar el mismo. 
+Busca caracteres, palabras o frases enteras. Lo que se le pase. 
+
+OPERADORES EN EXPRESIONES REGULARES
+Los operadores se pueden encadenar, dando lugar a expresiones de alta complejidad. Key sensitive. 
+^ Evalua el inicio de la cadena. Que elemento hay ahi. Ej: /^m/ constata si el patron empieza por una m (V o F). Se pone al principio.
+$ Evalua el fin de la cadena. Se pone el simbolo al final. 
+? Opcional, pregunta si esta o no. 
+. 
+| esto O esto. (10|12) 10 o 12.
+
+GRUPOS EN EXPRESIONES REGULARES
+[ABC] Lo incluido dentro puede estar en la cadena. Los corchetes indican que puede ser cualquiera de los caracteres que esten ahi contenidos.
+[0-9] Rangos de numeros. 
+( ) Grupos de sub expresiones como en matematica. 
+
+Ej:^[ABC] Controla si el patron comienza con A, B o C. 
+
+INTERVALOS
+a-z o A-Z porque es key sensitive. Para que controle ambos, se usa A-Za-Z 
+
+REPETIDORES
+Cuantas veces queres ver si se cumple un rango dentro de una cadena. 
+{inicio, fin} Intervalo fijo. 
+{numero} Si se pone un solo numero, es coincidencia exacta. 
+{inicio, }Se puede especificar solo el min y dejar el espacio vacio despues de la , si no importa cuantos hay despues del minimo. 
++ Indica que lo se puede repetir indefinidamente la cadena
+
+CARACTERES ESPECIALES O METACARACTERES (\ y el metacaracter)
+\s Se usa para controlar espacios
+\d Busca numeros (de digitos), evitar especificar rangos. 
+\w Busca letras o palabras. 
+Cuando son caracteres reservados de las RegEx, se usa la contrabarra \ para buscarlo como caracter. \, Busca comas por ejemplo. Con el punto es igual. 
+
+Ej: 
+^[A-Z]{1}[a-z]{1,16} Controla que la primer letra sea mayuscula y despues permite de 1 a 16 caracteres en minuscula. 
+
+VALIDAR TELEFONO
+(codigo de pais) - codigo de area - region - numero
+(\+\d{2})?\d{2}\s?-?\d{4}\s?-?\d{4}
+VALIDAR CORREO
+usuario@dominio.com.ar
+^([a-z0-9\.-]+)@([a-z0-9]+)(\.[a-z0-9]{3,20})(\.[a-z0-9]{2,20})?$
+VALIDAR FECHA
+1986-01-03
+([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[0-1])
+
+LIBRERIAS DE EXPRESIONES REGULARES 
+Para combertir en expresiones de mas alto nivel que RegEx
+Hapi/joi o Yup Traducen una expresion regular a sentencia mas amigable.

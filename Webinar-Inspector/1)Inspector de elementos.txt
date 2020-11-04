@@ -1,0 +1,66 @@
+Funcionalidades de los inspectores coinciden. Diversen en cuestiones esteticas o de orden. 
+
+INFORMACION APIS DE GOOGLE
+developers.google.com
+
+El inspector es para el frontend. 
+React es una libreria de js para el frontend de Facebook. A traves de ReactNative se pueden hacer nativas para mobile. 
+
+Los componentes (cada uno con estilos privados). Permite que un css no se pise con otro. Hay uno global y otros individuales de componentes.
+
+Los nombres de clase "extraños" que se ven en el inspector, son producto de la compilacion del codigo de js por interpretes. Compacta, minifica y uglyfica (hace "feo") el codigo. 
+
+En el inspector se pueden agregar propias reglas de estilo aparte de las propias de la pagina. 
+
+CONSOLA
+En consola se ve todo lo informativo de la pagina. Errores (rojo), advertencias (amarillo), informacion. 
+Permite tirar codigo de JS ahi mismo. 
+
+RED
+En Red estan todas las transacciones de informacion entre cliente y servidor. En paginas dinamicas estan en constante interaccion. 
+En la parte de red, en Sin regulacion se puede elegir/emular como va a ser la conectividad del que navega (red mas lenta o mas rapida).
+A la derecha muestra el tamaño y tiempo que tarda en ms para cargarse un elemento. 
+
+Codigos de estado:
+https://http.cat/ Lista, se puede poner el numero despues de la barra directamente.
+200 Ok, conecto con el servidor remoto.
+304 No modificado
+404 No encontrado
+
+CACHED
+Si el contenido ya esta guardado, ya se lo carga y no se lo pide de vuelta si no hace falta. Lo carga de esa memoria temporal (codigo 304)
+
+SERVER SIDE RENDERING
+Parte de las solicitudes se procesan del lado del cliente. Antes se hacian todas del lado del servidor directamente. 
+El cliente es una hoja en blanco. El servidor no devuelve el resultado, sino que envia .js y html para que el navegador la "arme" y muestre. 
+
+DEPURADOR
+Permite hacer pausas en la carga y ver que pasa en cada carga sucesiva de las partes de la pagin. Para buscar fallas.
+Muestra un hilo principal y los restantes. 
+
+EDITOR DE ESTILOS
+Permite ver todas las hojas de estilo que esta cargando la pagina. 
+
+RENDIMIENTO
+Se mide entre 0 y 100. Habla del performance del sitio. 
+Si hay muchas caidas, es que no gestiona bien las peticiones, renderea de mas, etc. 
+Si el buffer se llena (produce un overflow), se vuelve a cargar ciertos elementos porque se cayeron del buffer. 
+Buffer no tan lleno, es buena medida. 
+Mayor tiempo de carga, penalizacion de Google para el SEO. 
+Recalculate Style: Modificaciones de estilo que hace el DOM. 
+
+MEMORIA
+Muestra que se destina a cada proceso o a cada dato (strings, dom, scripts, etc).
+Esta armado en un arbol. 
+
+APLICACION
+Service workers. Usan los permisos que le concedemos a una pagina. 
+En Manifesto dice cuales son los permisos dados. 
+
+ALMACENAMIENTO
+Muestra que guarda el cliente. Local al navegador.
+Almacenamiento local y de sesion: lo mas nuevo que tiene para guardar el cliente. Informacion que persiste. 
+Almacenamiento de sesion: Se pierde al cerrar el cliente.
+Cookies: Informacion adicional. Constantemente se envian de cliente a servidor. En cada paquete que se envia, van las cookies (en almacenamiento no, es a pedido expreso). Informacion no importante pero necesaria. 
+IndexedDB: pequeñas bases de datos transaccionales en memoria, dentro del navegador. Bastante nuevo. Mas rapido que el almacenamiento local. Se guarda ahi y se persiste asincronicamente. 
+

@@ -1,0 +1,60 @@
+LENGUAJES DE BAJO|MEDIO|ALTO NIVEL
+Varia el nivel de abstraccion. A bajo, se "habla" directamente con la maquina a nivel de instrucciones, sin interprete de por medio. 
+En alto, es mucho entendible al que lo está leyendo. 
+bajo: assembler
+medio: c
+alto: js
+El compilador agarra el codigo y lo baja a lenguaje de maquina. Programa cerrado como resultado, se hace una sola vez.
+El interprete lee cada vez el programa que se va a ejecutar para correrlo. 
+
+TypeScript = JS Orientado a objetos.
+Angular transpila (convierte lenguaje de alto nivel a otro de alto nivel) TypeScript y lo pasa a JS que es lo que entiende el navegador (que es el interprete). 
+Con ReactJSX es similar que a Angular. 
+
+RAM son lotes de memoria de acceso aleatorio (se va directo al que se quiere por su direccion).
+Las variables son espacio de memoria donde se guardan datos. Cada variable tiene un tipo, JS lo asigna de forma dinamica, no se hace especificamente. 
+Mas memoria usado, menos rendimiento o mayor tiempo de carga.
+
+TIPOS DE DATOS
+String
+Boolean
+Number
+Object (Array entra en object)
+Con el metodo typeof(variable) devuelve el tipo de dato de una variable. 
+
+Los booleanos, dentro del punto de vista logico, representa un numero. true = 1, false = 0. Se pueden sumar, multiplicar, etc por ende
+
+OPERADORES ARITMETICOS 
+Los de la clase Math.
+
+OPERADORES LOGICOS
+Para comparar valores. 
+Igualdad == compara valor
+Igualdad estricta === compara tipo de datos y valor (es equivalencia)
+Desigualdad !=
+Desigualdad estricta !==
+&& and, todas las del grupo tienen que ser iguales
+|| or, al menos uno tiene que ser true para que todo el bloque lo sea. 
+! Niega el valor o el conjunto entero si esta delante de los ()
+
+UML
+Lenguaje unico|unificado de modulado. Varios diagrmas o representaciones visuales de los requerimientos. 
+DDF Diagrma de flujo (el Flujo de los datos entre modulos)
+DER Diagrama Entidad-Relacion (entidades que se relacionan entre si. Se usa para DB relacionales)
+DC Diagrama de clases (Para programacion orientada a objetos)
+
+Diagrama de flujo -> Pseudocodigo -> Programacion
+
+DIAGRAMA DE FLUJO
+https://app.diagrams.net Draw.Io
+Un caso del UML. Diagrama que representa un proceso con bloques. Que pasos se usan, condiciones para hacerlo, posibles alternativas. 
+
+La informacion se ingresa en el front, se valida en el navegador y despues se valida en el back de vuelta. El user no tiene acceso a esto. En el DFD seria una segunda condicion despues de la inicial.
+
+
+CHALLENGE
+alta una venta a partir de un cliente
+cambiar rueda de un auto
+cocinar budín
+preparar mate
+
