@@ -88,6 +88,7 @@ Para AGREGAR se puede hacer:
 - vector[posicion] = dato; Lo agrega en la indicada, si hay vacios en el medio, los mantiene asi. 
 - vector.push(dato); Y lo agrega en la ultima.
 - vector[length]; Agrega a la ultima posicion que esta siempre sin definir. 
+- vector.unshift(); Agrega en la primera posicion. 
 Para ELIMINAR se puede hacer:
 - vector.pop(); Elimina de la ultima posicion; 
 - vector.shift(); Elimina de la primer posicion;
