@@ -1,0 +1,100 @@
+TRABAJO FINAL
+Integraciones con proyectos de terceros mediante APIs, consumir datos y plasmarlo en el frontend. 
+
+JAVASCRIPT DESDE 0
+Lenguaje de programacion de alto nivel para hacer aplicaciones. React, Vue, Angular son frameworks para eso. 
+Lenguaje apto para servidores a traves de NodeJS (sino seria solo para el frontend). 
+Fullstack = frontend + backend
+
+React native / Ionic permiten hacer aplicaciones nativas para mobile. 
+
+-Incluir codigo JS en el body (al final de este)
+<script>codigo</script>
+-Vincular script JS desde el header
+<script src="archivoAparte.js"></script> 
+
+VARIABLES
+Espacio en memoria que almacena datos. JS es debilmente tipado, no se especifica el tipo de dato. En funcion del contenido, JS entiende que es cierto tipo de dato (string, num, boolean). 
+No pueden empezar con numeros, @, -. El nombre tiene que ser descriptivo. 
+Tres formas de crear variables. En general se usa let y const para todo hoy pero var se sigue usando (en realidad es lo que entiende el navegador):
+- var nombreVariable; 
+- let nombreVariable; Se pueden modificar, redefinir en tiempo de ejecucion. 
+- const nombreConstante; No cambia, no se puede redefinir. Ocupan menos espacio porque se definen una sola vez por no variar. Se suelen nombrar con mayuscula los nombres de constantes. Se puede usar el $ o _ adelante del nombre para marcar que es protegida. 
+const y let ocupan menos lugar en memoria que var.
+
+OPERACIONES ARITMETICAS
++
+-
+/
+*
+** Potencia
+% Modulo
+
+PROPIEDADES Y FUNCIONES
+variable.funcion();
+variable.propiedad;
+
+PEDIR DATOS AL USUARIO
+A traves de un input o la funcion prompt()
+- prompt("Mensaje, un string", "Valor default, borrable y opcional"); 
+
+MOSTRAR DATOS
+- document.write("");
+- console.log(""); Devuelve valores por consola. Ej, como va cambiando el valor de una variable. Hay otros metodos ademas de .log porque console es un objeto en JS.
+- alert(""); Popup.
+
+CONVERTIR TIPOS DE DATOS
+- parseInt("numero"); Convierte el string en un numero -en caso de que lo sea- y deja operar con este. Es una funcion. 
+- parseFloat("numero.decimal"); Funciona igual que el anterior. 
+- !!1 convierte a valor de verdad
+- !!0 convierte a valor de falso
+
+CONCATENAR DATOS CON TEMPLATE STRINGS
+Mas prolijo que usando el + y permite hacer operaciones.
+Ej:
+`Hola ${nombre}, tenes ${edad} años de edad. La suma de tu edad y el día de hoy es ${edad + dia}`
+
+GENERAR NUMEROS ALEATORIOS
+Math.random()*numeroTopeMax; El 1 es el minimo.
+REDONDEAR
+Math.round(numero); Redondea al proximo superior. Si usamos parseInt, trunca los decimales directamente. 
+
+CONDICIONALES
+Toma de decisiones por condiciones. 
+- if (condicion) {
+	bloque verdadero;
+} else if (condicion 2) {
+	bloque falso;
+} else {
+	bloque por defecto;
+}
+Si los bloques de codigo son instrucciones simples (una linea), se puede obviar el {}
+
+TERNARIO
+Se usa cuando hay condiciones simples a evaluar y los bloques tambien son simples.
+- (condicion) ? verdadero : falso; //El signo de pregunta es el if y los dos puntos el else. 
+EJ: (edad > 18) ? "Adelante capo" : "Adios niño rata";
+
+ARRAYS o VECTORES
+Un conjunto o coleccion de datos separados por una coma entre si. Pueden ser de distintos tipos de datos. 
+JS lo trata como un objeto, por ende tienen propiedades|atributos y funciones|metodos
+Los vectores tienen posiciones, empiezan desde la posicion 0. 
+Ej: 
+const autos = ["Golf", "207", "408"];
+Para acceder al ultimo vector[vector(length-1=)]
+En JS se pueden agregar elementos aunque este definido como const (en el resto de los casos no). No se puede redefinir el tipo de vector. 
+
+Para AGREGAR se puede hacer:
+- vector[posicion] = dato; Lo agrega en la indicada, si hay vacios en el medio, los mantiene asi. 
+- vector.push(dato); Y lo agrega en la ultima.
+- vector[length]; Agrega a la ultima posicion que esta siempre sin definir. 
+Para ELIMINAR se puede hacer:
+- vector.pop(); Elimina de la ultima posicion; 
+- vector.shift(); Elimina de la primer posicion;
+- vector.splice[posicion]; 
+Para SEPARAR valores y formatear el array
+- vector.join(" "); Separa los valores del vector con lo que se indique dentro de los " ".
+Para JUNTAR vectores:
+- vector1.concat(vector2, vector3, vectorN); Une los vectores pasados como argumentos al de afuera. 
+Para DAR VUELTA un vector:
+- vector1.reverse(); Empieza de atras hacia adelante el vector pasado. 
