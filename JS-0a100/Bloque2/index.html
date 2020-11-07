@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2</title>
+</head>
+<body>
+  <!-- 1.	[Piloto]
+  Crear un script que defina e inicialice una variable de tipo cadena de caracteres donde almacenemos el nombre de un miembro del grupo y otra variable de tipo entera donde se almacena su edad. Imprimir cada variable en una línea distinta en pantalla.
+  <script>
+    const nombre = prompt("Ingresar nombre", "Benjamin");
+    const edad = parseInt(prompt("Ingresar edad", "34"));
+
+    document.write(`<p>Hola ${nombre}!</p>`);
+    document.write(`<p>Tenes ${edad} años.</p>`);
+  </script> -->
+
+  <!-- 2.	[Basic]
+  Crear un script que permita ingresar a una persona su nombre, su correo y su edad. Mostrar un mensaje en pantalla y en la consola diciendo: Hola [nombre], te enviaremos un mail a [correo]
+  <script>
+    const nombre = prompt("Ingresar nombre:", "Benjamin");
+    const correo = prompt("Ingresar email:", "benji86@gmail.com");
+    const edad = prompt("Ingresar edad:", "34");
+
+    document.write(`Hola ${nombre}, te enviaremos un mail a ${correo}`);
+    console.log(`Hola ${nombre}, te enviaremos un mail a ${correo}`);
+  </script> -->
+
+  <!-- 3.	[Ensalada]
+  Escribir un script en el cual se ingresen 6 números enteros. Con estos se debe
+  calcular la  suma de los 3 primeros y el producto entre el tercero, el cuarto y el 5to y
+  sumarle el sexto
+  <script>    
+    let numeros = [];
+    while (numeros.length < 6){
+      numeros.push(parseInt(prompt("Ingresar numero entero")));
+    }
+
+    let resultado = 0;
+    for (let i = 0; i < 3; i++){
+      resultado += numeros[i];
+    }
+
+    console.log(numeros.join(" - "));
+    console.log(`La suma de los 3 primeros numeros (${numeros[0]}, ${numeros[1]} y ${numeros[2]}) es de ${resultado}.`);
+    console.log(`El producto entre ${numeros[2]}, ${numeros[3]} y ${numeros[4]} es ${numeros[2] * numeros[3] * numeros[4]}`);
+    console.log(`Si al producto de ${numeros[2]}, ${numeros[3]} y ${numeros[4]} la sumamos ${numeros[5]} el resultado es de ${(numeros[2] * numeros[3] * numeros[4])+numeros[5]}`);
+  </script> -->
+
+  <!-- 4.	[Apus]
+  Crear un script que permita simular de forma muy básica el mecanismo de una caja registradora. El usuario debe insertar el nombre del producto, la cantidad y el precio unitario. En la pantalla mostrar: “Gracias por comprar x unidades de x articulo. Total: Total a abonar.
+  
+  <script>
+    producto = [];
+    producto[0] = prompt("Qué desea comprar?");
+    producto[1] = parseInt(prompt("Cuántas unidades?"));
+
+    if (producto[0] == "papas fritas"){
+      document.writeln(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 120}.`);
+    } else if (producto[0] == "coca cola"){
+      document.writeln(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 85}.`);
+    } else if (producto[0] == "jamon"){
+      document.writeln(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 320}.`);
+    } else if (producto[0] == "chocolate block"){
+      document.writeln(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 175}.`);
+    } else {
+      document.writeln(`El producto no está disponible.`);
+    }    
+  </script>  -->
+      
+
+  <!--
+  5.	[ElProfesor]
+  Confeccionar un programa que permita al usuario ingresar 2 notas y calcular:
+  a.	Suma total
+  b.	Promedio
+  c.	Nota máxima
+
+  6.	[Passwords]
+  Solicitar que se ingrese dos veces una clave. Mostrar un mensaje si son iguales.
+
+  7.	[Movie]
+  Se ingresan por teclado 4 números, si todos los valores ingresados son menores a 23, imprimir en la página ‘Todos los números son menores al número establecido. 
+  8.	[Nine]
+  Crear un script que muestre la tabla de multiplicar del 9.
+  9.	[DeTodo]C
+  Crear un script que permita al usuario ingresar un número y muestre la tabla de multiplicar y la suma de los mismos. (Ejemplo: El usuario ingresa el numero 4)
+  4x1 = 4
+  4x2 = 8
+  ….
+
+  4+8+12+16 = 40
+
+
+  10.	[LaFabrica]
+  En una empresa trabajan 5 empleados cuyos sueldos oscilan entre $100 y $500, realizar un programa que lea los sueldos que cobra cada empleado e informe cuántos empleados cobran entre $100 y $300 y cuántos cobran más de $300. Además el programa deberá informar el importe que gasta la empresa en sueldos al personal (grupo)
+  11.	[newArray]
+  Crear un vector con 5 valores aleatorios comprendidos entre 1 y 1000. Luego extraer los dos últimos elementos sumarlos y mostrarlos. Imprimir también el tamaño final del vector
+  Recordar que const nro=1+(Math.random()*1000); permite generar un número 
+  aleatorio. -->
+
+
+
+</body>
+</html>
