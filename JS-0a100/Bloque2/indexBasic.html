@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2 - 2. [Basic]</title>
+</head>
+<body>
+  
+  <script>
+    document.write("<h1>2. [Basic]</h1>");
+    document.write("<h2>Crear un script que permita ingresar a una persona su nombre, su correo y su edad. Mostrar un mensaje en pantalla y en la consola diciendo: Hola [nombre], te enviaremos un mail a [correo]</h2>");
+
+    const nombre = prompt("Ingresar nombre:", "Benjamin");
+    const correo = prompt("Ingresar email:", "benji86@gmail.com");
+    const edad = prompt("Ingresar edad:", "34");
+
+    document.write(`Hola ${nombre}, te enviaremos un mail a ${correo}`);
+    console.log(`Hola ${nombre}, te enviaremos un mail a ${correo}`);
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2 - 3. [Ensalada]</title>
+</head>
+<body>
+
+  <script>    
+    document.write("<h1>3. [Ensalada]</h1>");
+    document.write("<h2>Escribir un script en el cual se ingresen 6 números enteros. Con estos se debe calcular la suma de los 3 primeros y el producto entre el tercero, el cuarto y el 5to y sumarle el sexto</h2>");
+
+
+    let numeros = [];
+    while (numeros.length < 6){
+      numeros.push(parseInt(prompt("Ingresar numero entero")));
+    }
+
+    let resultado = 0;
+    for (let i = 0; i < 3; i++){
+      resultado += numeros[i];
+    }
+
+    console.log(numeros.join(" - "));
+    console.log(`La suma de los 3 primeros numeros (${numeros[0]}, ${numeros[1]} y ${numeros[2]}) es de ${resultado}.`);
+    console.log(`El producto entre ${numeros[2]}, ${numeros[3]} y ${numeros[4]} es ${numeros[2] * numeros[3] * numeros[4]}`);
+    console.log(`Si al producto de ${numeros[2]}, ${numeros[3]} y ${numeros[4]} la sumamos ${numeros[5]} el resultado es de ${(numeros[2] * numeros[3] * numeros[4])+numeros[5]}`);
+  </script>
+</body>
+</html>

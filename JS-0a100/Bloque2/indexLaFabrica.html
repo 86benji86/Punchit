@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2 - 10. [LaFabrica]</title>
+</head>
+<body>
+  
+
+  <script>
+
+    document.write("<h1>10.	[LaFabrica]</h1>");
+    document.write("<h2>En una empresa trabajan 5 empleados cuyos sueldos oscilan entre $100 y $500, realizar un programa que lea los sueldos que cobra cada empleado e informe cuántos empleados cobran entre $100 y $300 y cuántos cobran más de $300. Además el programa deberá informar el importe que gasta la empresa en sueldos al personal (grupo).</h2>");
+
+    let sueldoEmpleados = [];
+    let sumaSueldoEmpleados = 0;
+    for (let i = 0; i < 5; i++){
+      sueldoEmpleados[i] = parseInt(prompt(`Ingresar sueldo de empleado ${i+1}:`));
+      sumaSueldoEmpleados += sueldoEmpleados[i];
+    }
+
+    let control100y300 = 0;
+    let controlMas300 = 0;
+    for (let i = 0; i < sueldoEmpleados.length; i++){
+      if (sueldoEmpleados[i] >= 100 && sueldoEmpleados[i] <= 300){
+        control100y300++;
+      } else if (sueldoEmpleados[i] > 300) {
+        controlMas300++;
+      }
+    }
+
+    document.write(`<p>Cantidad de empleados que cobran entre $ 100 y $ 300: ${control100y300}.</p>`);
+    document.write(`<p>Cantidad de empleados que cobran más de $ 300: ${controlMas300}.</p>`);
+    document.write(`El importe que gasta la empresa en sueldos al personal es de ${sumaSueldoEmpleados}.</p>`);
+
+  </script>
+
+</body>
+</html>

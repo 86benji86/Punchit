@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2 - 9. [DeTodo]</title>
+</head>
+<body>
+  
+  <script>
+
+    document.write("<h1>9. [DeTodo]</h1>");
+    document.write("<h2>Crear un script que permita al usuario ingresar un número y muestre la tabla de multiplicar y la suma de los mismos.</h2>");
+
+    const numero = parseInt(prompt("Ingresar un numero:"));
+    document.write(`<p>La tabla de multiplicar de ${numero} es la siguiente:</p>`);
+
+    for (let i = 1; i < 11; i++){
+      document.write(`<p>${numero} x ${i} = ${numero * i}</p>`);
+    }
+
+    acumulador = 0;
+    for (let i = 1; i < 11; i++){
+      acumulador += numero * i;
+      if (i < 10) {
+      document.write(`${numero*i} + `);
+      } else {
+        document.write(`${numero*i} = ${acumulador}`);
+      }
+    }
+
+  </script>
+
+</body>
+</html>

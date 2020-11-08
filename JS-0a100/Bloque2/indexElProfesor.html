@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2 - 5. [ElProfesor]</title>
+</head>
+<body>
+  
+  <script>
+    
+    document.write("<h1>5. [ElProfesor]</h1>");
+    document.write("<h2>Confeccionar un programa que permita al usuario ingresar 2 notas y calcular: a.	Suma total b.	Promedio  c.	Nota máxima</h2>");
+
+    const nota1 = parseInt(prompt("Ingresar nota 1"));
+    const nota2 = parseInt(prompt("Ingresar nota 2"));
+
+    notaMaxima = 0;
+    if (nota1 > nota2) {
+      notaMaxima = nota1;
+    } else if (nota1 < nota2) {
+      notaMaxima = nota2;
+    } 
+
+    document.write(`<p>La suma de las notas ${nota1} y ${nota2} es de ${parseInt(nota1) + parseInt(nota2)}.</p>`);
+    document.write(`<p>El promedio de notas es de ${(parseInt(nota1) + parseInt(nota2)) / 2}.</p>`);
+    document.write(`<p>La nota mas alta es ${notaMaxima}. `);
+    if (nota1 == nota2) {
+      document.write(`Ambas notas son iguales.</p>`);
+    }
+
+  </script> 
+
+</body>
+</html>

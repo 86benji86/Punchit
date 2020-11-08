@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 2 - 4. [Apus]</title>
+</head>
+<body>
+  
+  <script>
+
+    document.write("<h1>4. [Apus]</h1>");
+    document.write("<h2>Crear un script que permita simular de forma muy básica el mecanismo de una caja registradora. El usuario debe insertar el nombre del producto, la cantidad y el precio unitario. En la pantalla mostrar: “Gracias por comprar x unidades de x articulo. Total: Total a abonar.</h2>");
+
+    producto = [];
+    producto[0] = prompt("Qué desea comprar?");
+    producto[1] = parseInt(prompt("Cuántas unidades?"));
+
+    if (producto[0] == "papas fritas"){
+      document.write(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 120}.`);
+    } else if (producto[0] == "coca cola"){
+      document.write(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 85}.`);
+    } else if (producto[0] == "jamon"){
+      document.write(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 320}.`);
+    } else if (producto[0] == "chocolate block"){
+      document.write(`Gracias por comprar ${producto[1]} unidades de ${producto[0]}. Total: $ ${producto[1] * 175}.`);
+    } else {
+      document.write(`El producto no está disponible.`);
+    }    
+  </script>
+
+</body>
+</html>
