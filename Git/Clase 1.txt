@@ -1,0 +1,42 @@
+GIT es un sistema de control de versiones, la mas usada hoy. Hay otras como por ejemplo SVN. 
+Git Bash = Consola, comandos *nix
+
+~ Significa que estas en el directorio principal del usuario.
+usuario@DOMINIO MINGW64 ~ (branch local cuando se esta en un repo)
+usuario en el dispositivo donde esta, el compilador en C que tiene seleccionado Git y el directorio donde esta.
+
+Permite crear distintas ramas del mismo codigo, para evitar romper una en caso de querer hacerle cambios. Master es la que anda, es la principal. Para hacer algo nuevo, se abre rama, cuando se termina, se hace merge con master. 
+
+WORKING DIRECTORY > STAGING AREA > LOCAL REPO -> REMOTE REPO
+			git add>		
+							git commit>	 	
+											git push>
+											<git fetch
+							<git checkout
+							<git merge
+
+Se arranca a trabajar en la Working directory. Con add se lo pasa a la staging area (es lo que se va a guardar en el repo).
+
+- pwd Devuelve en que directorio estas
+- ls lista los subirectorios/archivos de del directorio donde esta
+- ls -ll muestra los permisos y demas datos de los archivos. (d directorio, l link, - archivo ). Los ocultos no (con -la los muestra).
+- dir Muestra los archivos pero sin color (no separa por tipo de archivo como si hace ls)
+- cd Solo te manda a home. cd .. al directorio anterior
+
+En la staging area se siguen los cambios previo a pasarlos el repo local con el commit. 
+El commit es cuando se guarda en el repositorio local.
+
+SECUENCIA GIT
+- git init
+Inicia el repositorio y se plante en la rama principal (master por defecto). 
+- git add archivos agrega los archivos a la staging area (los trackea)
+- git rm --cached archivos los quita de la staging area.
+- git status 
+Muestra que tuvo cambios en el working directory. En rojo no esta trackeado todavia (cuando se agrega con add lo muestra en verde). 
+- git commit -m "comentario descriptivo"
+
+- .GIT.IGNORE
+Archivho oculto donde se especifica que tiene que ignorar el control de cambios.
+
+- REMOVER REPO
+Remover la carpeta .git

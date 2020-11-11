@@ -1,0 +1,64 @@
+Suspense y Lazy: Va cargando a medida que se entra en una ruta. No carga todo antes. 
+
+-- PREGUNTA DE ENTREVISTA --
+let arreglo = [] 
+== //Son lo mismo
+let arreglo = new Array() 
+
+Se puede pasar null como instruccion cuando no se quiere que haga nada en un ciclo.
+Se podria usar el .length para prescindir de los acumuladores. 
+Constantes estaticas (usadas para comparacion generalmente) se nombran en MAYUSCULA.
+
+Si una variable se toma como undefined, se puede poner un OR mismo en la declaracion como alternativa. 
+let variable = undefined || "No esta definida"
+function mostrarNombre (nombre || "nombre de emergencia")
+
+SCOPE
+Es el alcance de las variables. Surge de donde estan definidas (Dentro de un bloque o fuera -global-). Var es de alcance global, no importa donde se defina, por eso se usa let y const. 
+- Local: del bloque donde esta definida. 
+- Global: del script puntual donde esta definida. 
+- Super globales
+
+ARRAYS O LISTAS PARALELAS
+Se hacen dos arrays, sus valores guardan correlacion entre si. Forma que permite relacionar grupo de elementos.
+La posicion 1 del array1 tiene relacion directa con la posicion 1 del array2.
+Ej: alumnos[1] == "Juan";
+notasAlumnos[1] == 4
+
+CICLOS
+Se usan para repetir acciones un numero determinado de veces. 
+Las variables y constantes definidas dentro de un ciclo, "mueren" al llegar al final del ciclo } y se crean de vuelta en la pasada sucesiva del mismo. Por eso no toma como redefinir una constante al completarlo y asignarle nuevo valor en la proxima pasada. 
+
+ITERADORES
+i es el acumulador usado en los ciclos (ej: i + 1 o i++). Se puede sumar en la cantidad que se quiera (ej: i += 2)
+
+- FOR 
+For se ejecuta por un rango definido. 
+for (inicio; fin; incremento|decremento) {
+	instrucciones;
+}
+
+for (let i = 0; i <= 100; i = i++){
+	console.log(i);
+}
+
+- WHILE
+While se ejecuta mientras se de una condicion. 
+
+- FOR EACH
+nombreArray.forEach Se usa para recorrer un vector individualmente por cada elemento de este. 
+
+- MAP
+
+- FOR OF
+
+FUNCIONES
+.TOUPPERCASE()
+Pasa a mayusculas
+.TOLOWERCASE()
+Pasa a minusculas
+.TRIM()
+Elimina espacios de la cadena que esten al principio o al final aunque se puede definir una RegEx para que sea del medio. 
+.SPLIT()
+Dividir una cadena de texto. segun el parametro indicado. Ej: cadena.split(".") Divide la cadena entre lo que esta antes y despues del . o de los .
+Si ponemos "" divide cada caracter de la cadena. 

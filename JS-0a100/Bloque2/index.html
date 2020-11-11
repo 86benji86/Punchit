@@ -3,20 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bloque 2 - 1. [Piloto]</title>
+  <title>Document</title>
 </head>
 <body>
-
+  
   <script>
-    document.write("<h1>1. [Piloto]</h1>");
-    document.write("<h2>Crear un script que defina e inicialice una variable de tipo cadena de caracteres donde almacenemos el nombre de un miembro del grupo y otra variable de tipo entera donde se almacena su edad. Imprimir cada variable en una línea distinta en pantalla.</h2>");
+    let estudiantesTurnoManana = 0;
+    let estudiantesTurnoTarde = 0;
+    let estudiantesTurnoNoche = 0;
 
-    const nombre = prompt("Ingresar nombre", "Benjamin");
-    const edad = parseInt(prompt("Ingresar edad", "34"));
+    for (let i = 0; i < 3; i++){
+      estudiantesTurnoManana += parseInt(prompt("Ingresar edad de estudiante del turno mañana"));
+      console.log(estudiantesTurnoManana)
+    }
 
-    document.write(`<p>Hola ${nombre}!</p>`);
-    document.write(`<p>Tenes ${edad} años.</p>`);
+    for (let i = 0; i < 4; i++){
+      estudiantesTurnoTarde += parseInt(prompt("Ingresar edad de estudiante del turno tarde"));
+      console.log(estudiantesTurnoTarde)
+    }
+
+    for (let i = 0; i < 2; i++){
+      estudiantesTurnoNoche += parseInt(prompt("Ingresar edad de estudiante del turno noche"));
+      console.log(estudiantesTurnoNoche)
+    }
+
+    promedioManana = Math.round(estudiantesTurnoManana / 3);
+    promedioTarde = Math.round(estudiantesTurnoTarde / 4);
+    promedioNoche = Math.round(estudiantesTurnoNoche / 2)
+
+    document.write(`<p>El promedio de edad del turno mañana es de ${promedioManana}</p>`);
+    document.write(`<p>El promedio de edad del turno tarde es de ${promedioTarde}</p>`);
+    document.write(`<p>El promedio de edad del turno noche es de ${promedioNoche}</p>`);
+
+    if (promedioManana > promedioTarde && promedioManana > promedioNoche) {
+      document.write("<p>El turno mañana tiene el mayor promedio de edad</p>");
+    } else if (promedioTarde > promedioManana && promedioTarde > promedioNoche){
+      document.write("<p>El turno tarde tiene el mayor promedio de edad</p>");
+    } else {
+      document.write("<p>El turno noche tiene el mayor promedio de edad</p>");
+    }
+
   </script>
- 
+  
 </body>
 </html>
