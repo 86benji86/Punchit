@@ -1,0 +1,96 @@
+## PARADIGMA SECUENCIAL
+
+Se escribe el codigo uno abajo de otro, se ejecutan como se leen.
+
+## PREGUNTA DE ENTREVISTA
+
+- Paso de parametro por
+  Valor: string, number, boolean
+  Referencia: Objeto, Clase.
+
+Refactorizar : Rediagramar el codigo (la parte necesaria). Ej: Subdividir funcion.
+
+Los strings se pueden transformar en vectores. Los vectores se pueden iterar.
+
+## FUNCIONES - PARADIGMA FUNCIONAL
+
+Permiten tener la logica separada y reutilizarla a medida que se necesite sin retipearla.
+Hay funciones ya definidas (las core de js por ejemplo) y que se pueden definir por el dev.
+Una funcion puede o no tomar parametros.
+
+- Para definir una funcion propia se usa la palabra reservada function y se especifica el nombre que lo identifica:
+  function nombreFuncion(){
+  instrucciones;
+  }
+
+Los scripts js externos no tienen cabezera. Se puede escribir el codigo directamente sin poner nada antes.
+
+## INVOCAR SCRIPT
+
+Para llamar al .js se puede linkear al final del body
+funcion();
+
+<script src="script.js"></script>
+
+O ponerlo en el header
+
+<script src="script.js"></script>
+
+Y llamarlo desde el body
+
+<body>
+	<script>
+		funcion();
+	</script>
+</body>
+
+Depende como se definan las funciones, donde es mejor invocarlo.
+En ECMAScript no se suelen llamar abajo porque ahora se suelen definir las funciones con las **arrow function** o =>
+const nombre = (argumentos) => { // equivalente a function nombre(argumentos)
+instrucciones;
+}
+Se tiene que definir antes de usarlo en este formato (solo tiene acceso lo que esta debajo de la definicion). Mantiene el alcance de let|const. En este caso, se define el script en el head.
+Se suele usar const nombre porque no se redefine el comportamiento de la funcion.
+
+## PARAMETROS
+
+Los parametros son privados, de alcance de la funcion nomas.
+Se puede especificar que parametros toma la funcion entre parentesis.
+function nombre(parametro){
+instrucciones;
+}
+
+Los parametros estan definidos dentro de la funcion (por su scope). Fuera no existen.
+Una funcion puede tomar como parametro el resultado de otra funcion.
+
+## RETURN
+
+Es la orden que especifica que devuelve una funcion, que muestra el resultado final.
+return variable; "exporta" el resultado final de la funcion.
+Devuelve el valor de la variable, no la variable en si. Lo exporta porque se quiere usar en otra parte del programa.
+Lo que se defina despues del return, no se ejecuta.
+Se puede definir un if con returns en cada rama segun las condiciones que apliquen.
+return variable;
+return funcion();
+
+Si se obvian las {} al hacer la funccion con =>, la funcion devuelve automaticamente el ultimo valor obtenido. Permite hacer la funcion en una unica linea
+const funcionNombre = (argumento) => instrucciones;
+
+## PRINCIPIO UNICO DE FUNCION
+
+Que la funcion cumpla UNA sola tarea. Si hace muchas, puede ser dividida en subfunciones.
+
+## CONTROLAR O VALIDAR TIPO DE DATOS
+
+variable.typeof === "string|number|object"
+
+## .INCLUDES
+
+Es un metodo, pregunta si un valor esta incluido en un vector, string, objeto.
+vector.includes(elemento);
+Negandolo se puede usar a modo de no inclue porque devuelve true si no esta
+!vector.includes(elemento);
+
+## .REVERSE
+
+Da vuelta un vector, previa comprobacion de que es un vector.

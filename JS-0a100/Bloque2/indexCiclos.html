@@ -37,11 +37,12 @@
 
     if (promedioManana > promedioTarde && promedioManana > promedioNoche) {
       document.write("<p>El turno mañana tiene el mayor promedio de edad</p>");
-    } else if (promedioTarde > promedioManana && promedioTarde > promedioNoche){
-      document.write("<p>El turno tarde tiene el mayor promedio de edad</p>");
+    } else {
+      if (promedioTarde > promedioNoche){
+        document.write("<p>El turno tarde tiene el mayor promedio de edad</p>");
     } else {
       document.write("<p>El turno noche tiene el mayor promedio de edad</p>");
-    }
+    } }
 
   </script>
   
