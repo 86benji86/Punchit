@@ -1,0 +1,89 @@
+# OBJETOS LITERALES (JSON)
+
+Objetos literales. JSON es uno. NO es un objeto como una instancia de una clase, sino que es un objeto literal porque almacena informacion (no tiene metodos propios).
+Se usa para transportar informacion entre cliente y servidor o incluso entre servidores.
+
+variables planas = string || number || boolean
+arrays = ["colecciones", "de", "datos"]
+Objetos literales = JSON = JavaScript Object Notation.
+
+Antes se usaba XML, formato no de todo eficiente en caso de haber varios niveles de informacion dentro de la esctructura (sobre todo a niveles cada vez mas bajos).
+
+No hay un limite de datos a guardar, la estructura es variable y distintos objetos literales pueden tener atributos distintos (que uno tenga y el otro no por ejemplo). En esto se basan las DB no relacionales (NoSQL).
+
+## Tienen dos partes
+
+propiedad|atributo:valor
+
+- Los atributos se separan con una coma (como en los Arrays).
+- Los atributos marcados con una ? al final, son opcionales de completar. Da undefined si no esta definida.
+- Acepta funciones anonimas como valor de un atributo (no tienen nombre). Se disparan en un caso particular, definidas en ese momento. =>
+- Se pueden almacenar objetos literales dentro de los objetos literales con sus propias propiedades y valores. Array de objetos. [{}, {}]
+- Comienza con {} cuando es un solo objeto. Comienza con [] cuando son varios.
+
+```
+const docente = {
+    id : 1,
+    nombre : "Franco",
+    apellido : "Di Leo",
+    apodo? : "Frantuko",
+    saludo : function() {alert(`Hola ${docente.nombre}`)},
+    saludoAlterno : () => {alert(`Hola 2 ${docente.nombre}`)},
+    edad : 34,
+    casado : false;
+    coloresFavoritos : ["Rojo", "Azul", "Negro"],
+    mascota : [
+        {
+            nombre : "Goofy",
+            tipo : "Perro",
+            vivo : false
+        },
+        {
+            nombre : "Batman",
+            tipo : "Perro"
+        },
+        {
+            nombre : "Caty",
+            tipo : "Gato"
+        },
+    ],
+}
+```
+
+En caso de pasar objetos como parametro de una funcion, tienen que estar definidos antes de la funcion que los reciba.
+
+## ACCESO A LOS ATRIBUTOS Y A SU VALOR
+
+Se hace con el punto. Objeto.Atributo.
+Tambien acepta Objeto[atributo] (se usa menos)
+Se pueden concatenar los atributos con el +
+Ej:
+
+- docente.nombre => "Franco"
+- docente.coloresFavoritos[2] => "Negro"
+- docente.mascota[0].nombre => "Goofy"
+- docente.mascota[0].nombre + docente.mascota[0].tipo => "Goofy" "Perro"
+
+## FOR OF
+
+Diferencia entre for y for of es que el segundo se usa para array de objetos.
+No hace falta acordarse de los subindices (similar a forEach), no los usa.
+Devuelve cada elemento dentro del array de objeto indicado y sus propiedades. Cuando no hay mas, sale del ciclo.
+Es escalable. Si se agrega otro objeto, lo devuelve sin modificar el codigo.
+Ej:
+for(objeto of objetos) { //objeto seria el indice
+//Genera una mascota por cada recorrido
+//Hace lo mismo que mascotas[i]
+}
+
+## OBJECT.KEYS
+
+Se pasa como parametro el objeto a analizar y devuelve todas las propiedades que tiene el objeto pasado (no su valor). Para acceder a los valores de las propiedades se indica la propiedad como si fuera el indice.
+Ej. docente["nombre"] => "Franco"
+
+## CAMBIAR VALORES
+
+Es asignación de valores, como si fuese una variable mas.
+objeto["subindice"] = "nuevoValor";
+Ej:
+docente["nombre"] = "Francote";

@@ -62,6 +62,21 @@ instrucciones;
 
 Los parametros estan definidos dentro de la funcion (por su scope). Fuera no existen.
 Una funcion puede tomar como parametro el resultado de otra funcion.
+En caso de no especificar parametros, js toma como que el parametro es undefined.
+
+Ciertas funciones pueden recibir como parametros a otras funciones. En ese caso se llaman **callback**
+
+## PARAMETROS POR DEFECTO
+
+Se pueden indicar parametros que se van a aplicar a la funcion que se llama de manera predeterminada. Si no se le pasa ninguno propio, por defecto usa el que se especifica en ese caso. Ej: (num=3)
+
+### VARIABLE || VARIABLE=VALOR
+
+Se usa para definir valores de variables en caso de que no sepamos si estan.
+
+### VARIOS PARAMETROS
+
+El operador spread (...) se usa para eso. Ej: (...params) que permite despues pasar como parametro al llamar la funcion (2,3,4,5,6).
 
 ## RETURN
 

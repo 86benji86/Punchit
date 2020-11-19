@@ -19,6 +19,12 @@
       acumulador += valoresAleatorios[i];
     }
     document.write(`<p>${valoresAleatorios.join(" - ")}</p>`);
+    
+    for (let i = 4; i > 2; i--){
+      acumulador -= valoresAleatorios[i];
+      valoresAleatorios.pop();
+    }
+    document.write(`<p>${valoresAleatorios.join(" - ")}</p>`);
     document.write(`<p>La suma de los números es de ${acumulador}</p>`);
 
   </script>
