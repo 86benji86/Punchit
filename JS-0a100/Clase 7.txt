@@ -1,0 +1,87 @@
+## PATRONES DE DISEÑO
+
+Tecnicas ya probadas que se usan para resolver problemas.
+
+- PATRONES CREACIONALES (CONSTRUCTORES)
+- PATRONES DE DISEÑO (MVC | FLUX)
+- PATRONES DE COMPORTAMIENTO
+
+## POLYFILL
+
+Rebaja a JS puro alguna tecnologia javascript para que la entienda cualquier navegador. Es un "traductor" de codigo (no compilador).
+Transpilador pasa de un lenguaje de muy alto nivel (jsx y typescript por ej) a uno de alto nivel (js por ej). Babel y Webpack hacen esto.
+Compilador pasa de alto a bajo nivel.
+
+## GESTION DE MEMORIA EN EL NAVEGADOR
+
+Se ve en el mapa de memoria del navegador como gestionada la carga en memoria de cada pagina.
+
+1. Reservar espacios de memoria (variables, llamadas, etc)
+2. Utilizar la memoria (cuando lee y escribe variables)
+3. Liberarla (garbage collector, en js es automatico como en otros lenguajes de alto nivel).
+   _ Tener en consideracion llamadas a funciones, recursividad, ciclos (mas ciclos, mas memoria). Todo esto ocupa memoria. Mas eficiente, menos ocupa.
+   _ Que no use un metodo nativo de js, no significa que sea peor necesariamente para la ocupacion de memoria.
+   Mas grande es la aplicacion, mayor es la gestion de memoria.
+   Lazyload carga fragmentos de la pagina, solo los que solicita el usuario.
+
+# EVENTOS
+
+- blur (element lost focus), scroll, mousemove, input, change, focus, click, dbclick, mouseover, mousein, mouseout
+  e = evento // Cuando lo necesita el evento. Lo pasa de forma implicita.
+- Si se necesitan leer una propiedad del elemento, se pasa por evento.
+
+## FUNCIONES ANONIMAS
+
+() => funcion
+La define y llama a otra en ese momento.
+
+## LISTENERS
+
+Un listener es basicamente una suscripcion a un evento. Escucha ese evento puntual y "avisa" cuando se dispara, ejecutando lo que se le haya especificado.
+Si o si hay que suscribirse antes a ese evento para que avise que pasa el evento. EMMITER = Suscribe al OBSERVER
+Ciclos de vida: es el proceso de duracion de una pagina. Se carga, se usa y "muere".
+Emiter : El que emite el evento.
+Listener : El que escucha el evento.
+En JS es asi:
+
+1. window.onload = start; //init, funcion de entrada
+   - Dispara la funcion start cuando todos los nodos de la pagina html (el DOM) este cargado, recien ahí se ejecuta esto.
+   - En la funcion start se suele setear todos los Listeners desde js directamente para no ensuciar el html.
+   - Es una forma de controlar que todo el DOM este cargado y que no se va a llamar|buscar algo que todavia no esta disponible.
+   - Si se llama un metodo metodo() se ejecuta en el momento. Si se llama metodo; se ejecuta en un moento especifico. En este caso, no le daria bola al window.onload. Con parentesis se ejecuta en el momento, independientemente de que pase el evento.
+   - Si se llama sin (), se pasa implicito el evento que disparo a la funcion.
+2. getElementById("id").addEventListener("evento" () => funcionNueva); //Suscribe al evento especificado. Pasando la funcion asi sin (), no ejecuta nada hasta que no se de el evento indicado.
+
+## .INERHTML
+
+Permite cambiar el contenido del DOM y acepta tags html.
+Ej:
+elemento.innerHTML = "<h1>Hola vieja</h1>";
+Agrega un <h1> en elemento (podria ser un span oculto por ejemplo).
+
+## QUERYSELECTOR
+
+Se puede usar como getElementById|Class|Element. Depende que recibe:
+
+- "evento"
+- /#clase/
+
+## API
+
+Application Programming Interface
+Sirve para reutilizar codigo que alguien ya hizo.
+
+- Interface > Capa de abstraccion (intermedia). Interfaz de alto nivel para el usuario que le permite hacer acciones.
+- Provee datos en formato JSon.
+- Aplicacion que permite comunicar dos cosas a alto nivel.
+  RESTFULL API > Rest es una **arquitectura** que dice como estan organizadas las carpetas y permisos en una direccion.
+  Postman permite testear o interactuar con APIs rest.
+  **Verbos** http es la forma de interactuar con la API. La accion que se puede hacer (un CRUD basicamente):
+
+1. POST (alta)
+2. GET (traer)
+3. PUT (update)
+4. DELETE
+   La cabecera de la API devuelve estados que informa como salio la operacion ejecutada.
+   Devuelve un mensaje y un codigo de estado, 200 por ejemplo es que salió OK.
+   [Codigo de estados en gatitos](https://http.cat)

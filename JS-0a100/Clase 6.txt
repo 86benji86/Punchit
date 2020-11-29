@@ -1,0 +1,71 @@
+## EVENTOS
+
+DOM: Document OBject Model
+Es un arbol. El elemento raiz es el HTML. Una representacion u organizacion del mapa HTML, de todos los datos del documento.
+Manejando el DOM se modificar el contenido de una pagina en el momento.
+
+Representacion de objetos con la que se conforma el arbol HTML.
+
+Document permite acceder a cualquier parte del DOM.
+Cada accion que hacemos en la pagina es un evento.
+
+Los eventos se ejecutan en determinado momento X especificoy disparan una funcion determinada con anterioridad.
+
+No hace falta embeberlo dentro de la etiqueta html <script>
+
+En general, los eventos en JS se designan con on adelante.
+
+- Ej: onclick=""
+
+Cuando hay un evento del lado del cliente, el servidor deberia captarlo e interpretarlo.
+Se usa e como notacion corta pero puede llamarse de cualquier forma.
+
+Desde cualquier elemento del DOM, se puede acceder a cualquier otro elemento. Previa identificacion por id (id para js, name para el servidor).
+Document es el que tiene toda la referencia del object model.
+Con el metodo .getElementById se puede acceder a cualquier elemento por su id. Devuelve lo mismo que si se tirase un .this.
+
+- Ej: document.getElementByID("password")
+  Con cualquier evento podemos acceder a cualquier punto (nodo) del DOM.
+- Un toggle es una reasignacion del valor del type de un nodo (ej: si es password, asignar text y viceversa).
+Ej:
+const showPassword = () => {
+	//Trae el valor del elemento de id password
+	const pass = document.getElementById("password");
+	//Revisa si es text, passa a type password y viceversa
+	pass.type === "text" ? (element.type = "password") : (element.type = "text");
+}
+
+### OBJECT.ASSIGN
+
+Asigna valores a un elemento.
+
+- Ej: Object.assign(usuario,{nombre: nombre, apellido : apellido, email: email});
+  En JS si propiedad : valor coinciden, se puede pasar directamente usuario.
+  Ej: Object.assign(usuario,{nombre, apellido, email});
+  Esto evita tener que hacer usuario = usuario.value por cada uno.
+
+### Lista de eventos de Mozilla
+
+(MDN Events List) [https://developer.mozilla.org/es/docs/Web/Events]
+
+### <NOSCRIPT></NOSCRIPT>
+
+En caso de que JS este deshabilitado de parte del cliente, se puede usar una etiqueta en ese caso (como el mensaje cuando no carga una imagen).
+No se ejecuta si no se da ese caso.
+
+### THIS
+
+Pasa la (por) referencia al elemento que dispara una funcion (donde se da el evento). Lo que pasa es un objeto.
+El target es el objeto del evento.
+this === e.target
+
+## SINCRONICO Y ASINCRONICO
+
+Se ejecuta en tiempo real o defazado en cada caso. JS maneja ambas.
+
+- Asincronico: Mientras una tarea se ejecuta, se resuelven otros problemas.
+- Sincronico: Hasta que no se resuelve el problema actual, no resuelve otros.
+
+setTimeout(()=>{
+
+},2000
