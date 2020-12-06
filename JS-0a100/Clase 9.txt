@@ -1,0 +1,215 @@
+# ECMA Script
+
+Sintaxis mas resumida. Es un estandar, sugar sintax. A bajo nivel, JS no interpreta esa informacion, el browser lo convierte a estructuras y funciones mas primitivas (for, while, if, etc.).
+
+- REST es un servidor que al hacer una peticion, devuelve informacion en formato JSON.
+- Los datos de los navegadores se comunican mediante strings. Firefox lo convierte mediante .parse a un json (en Vivaldi o Chrome se usa una extension para verlo asi).
+
+JSON.stringify(objeto) Retorna el objeto pasado en formato string.
+JSON.parse(string) Retorna el string pasado en formato objeto (JSON)
+
+### INMUTABILIDA O Sintaxis Constancias Protegidas
+
+A las constantes se les suele poner un \_ adelante del nombre para indicar que es protegida, no se la quiere modificar. Si se quiere hacer operaciones sobre eso, se hacen sobre una copia de \_constanteNombre. Se usa tambien el $ adelante. Buena practica mas alla de ECMAScript6
+
+## DESTRUCTURING
+
+A partir de ECMAScript5 (2015), se incorpora el concepto de destructuring. Desestructura un objeto para acceder a sus atributos.
+[How to Destructur](https://dmitripavlutin.com/javascript-object-destructuring/)
+
+let|const {propiedad} = \_objetoJson;
+Del objeto pasado despues del =, destructura propiedad.
+**Se puede guardar en una variable con otro nombre tambien en lugar del que tiene en el objeto con const {identificadorPropiedad : nuevaVariableValorPropiedad} = objeto**
+
+- La propiedad tiene que estar definida previamente. No se puede extraer una que no existe.
+- Cuando se crea un alias, esa variable original pasa a un estado basura y no existe mas (lo levanta el garbage collector).
+- Crea una variable de nombre propiedad donde guarda el valor del atributo propiedad del objetoJson pasado.
+  Ej1: const {name, lastname, edad} = objetoAlumna;
+- Crea 3 variables independientes con esos nombres -name, lastName, edad- con los valores de esos atributos indicados del objetoAlumna.
+
+Ej2:
+const yo = {"datos" :
+{
+nombre : "benji",
+edad : 34
+},
+"datos2" :
+{
+mascota : "caty",
+hobby : "juegosPC"
+}
+}
+
+const {datos2 : {hobby}} = yo // "juegosPC"
+
+- Hasta 8 propiedades se puede destructurar, sino conviene encapsularlas.
+
+## FOREACH
+
+Es un metodo de la clase Array (aplicado a vectores) que permite iterar un Array.
+Recibe como argumento un callback -una funcion adentro de una funcion o metodo-
+Se puede hacer para nombrarlos plurar del objeto total a recorrer y singular de cada uno de los que se quiere ver en cada vuelta:
+personas.forEach(persona => console.log(persona)); // cuando la arrow function no tiene las llaves, tiene implicito un return
+
+- .forEach lo usa para mostrar una lista (varios). []
+
+Ej1:
+const lista = [2, 4, 6];
+lista.forEach(list => console.log(list));
+
+Ej2:
+// Itera todo y devuelve cada objeto entero. Despues indica que quiere de cada objeto que itera.
+characters.forEach((character) => {
+const obj = {
+nombre: character.name,
+status: character.status,
+}
+console.log(obj);
+console.log("-----");
+});
+
+Ej3:
+// Itera todo pero solo devuelve los atributos indicados.
+characters.forEach(({name, status, gender}) => {
+const obj = {
+nombre: name,
+status, // Si la pripiedad, coincide con el valor, se puede indicar directamente el mismo nombre una sola vez. Por eso en nombre pone los dos.
+}
+console.log(obj);
+console.log("-----");
+});
+
+## FILTER
+
+Itera un vector haciendo uso de un condicional segun algun atributo del objeto. Puede hacerlo por el uso de callbacks => que tiene implicito el return.
+Retorna un array de objetos que coincidan con la condicion dada.
+**Es un For + If + Push de los que dan true**
+La condicion es lo que se pasa despues de la flecha, el valor que tenga el atributo indicado.
+Recorre el vector, lo filtra con la condicion especificada y lo que devuelve es un vector de objetos.
+
+- .forEach lo usa para mostrar una lista (varios). []
+- .filter devuelve un array (varios). []
+
+Ej1:
+const aliveCharacters = characters.filter(
+(character) => chacracter.status === "Alive";
+
+Ej2:
+const nuevoEmpleados = empleado.filter(empleado => empleado.edad >= 23)
+
+## FIND
+
+Retorna un objeto unico o vacio que coincida con la condicion dada.
+Tambien le da una variable de recorrido y toma una condicion.
+Es para simplificar la busqueda|vista de objetos.
+La diferencia con filter es la cantidad de elementos que retorna.
+
+- .forEach lo usa para mostrar una lista (varios). []
+- .filter devuelve un array (varios). []
+- .find devuelve un objeto (unico). {}
+  Ej:
+  const findById = (id, array = characters) => const objeto = array.find(arr => arr.id ===id); //return implicito por oneliner. Por defecto recibe el array characters, sino se puede indicar otro.
+
+const personaje = findById(1, characters);
+
+FUNCIONES LAMBA
+
+## MAP
+
+El .map a diferencia del forEach, retorna elementos (similar al .filter y find). Es un metodo de la clase Array que retorna elementos.
+Si solo se quiere mostrar informacion en listados, se usa forEach.
+Si esa informacion se quiere transformar (aplicar una funcion al parametro pasado), se usa map. Modifica el resultado y genera una lista nueva (un nuevo array al que le hace push del elemento de cada iteracion).
+**El resto no genera una lista nueva**
+
+- .forEach lo usa para mostrar una lista (varios). []
+- .filter devuelve un array (varios). []
+- .find devuelve un objeto (unico). {}
+- .map devuelve una nueva lista transformada (varios). []
+  La lista base se mantiene intacta, ininmutabilidad de la informacion. Se guarda en una nueva lista.
+  **Es iguala un for y un push**
+
+Ej1:
+const lista = [2, 20, 40];
+const sumar20 = (lista) => lista.map (l => l+20); // return implicito por onliner. Toma un elemento l de la lista pasada y le suma 20. Devuelve el valor en una nueva lista suma20.
+
+Ej2:
+const productos = [
+{ id : 1, nombre : "Salchipapa", precio : 100},
+{ id : 2, nombre : "Chipa", precio : 50},
+];
+
+const precioConDescuento = (dto, lista = productos) => lista.map(l) => (l.precio \* dto) / 100; // Return implicito en nuevo array. Aplica descuento pasado a la propiedad precio del producto del array productos.
+
+const productoDestacado = (lista = productos) => lista.map(l) => l.nombre.toUpperCase());
+
+precioConDescuento(75);
+productosDestacado();
+
+## REDUCE
+
+Transforma una estructura en otra. Permite agrupar, sumar, etc. Un array en un numero por ejemplo.
+Toma el valor inicial del vector y el current que es donde se encuentra (i e i + 1 por ej). Si no hay previous, acepta un tercer argumento opcional para setear como valor inicial (toma 0 por ejemplo.). Se podria arreglar con inicial = 0 como parametro pasado por defecto.
+**Es igual a un for + acumulador**
+
+Ej1:
+const empleados = [
+{ id : 1, nombre : "Juan", sueldo : 45000},
+{ id : 2, nombre : "Pedro", sueldo : 75000}
+{ id : 3, nombre : "Carlos", sueldo : 55000}
+{ id : 4, nombre : "Luis", sueldo : 175000}
+];
+
+const calcularTotal = (empleados) => {
+/_
+const sueldos = empleados.map(empleado) => empleado.sueldo); Crea un nuevo array donde almacena la propiedad sueldo, no la transforma en este caso
+const total = sueldos.reduce((inicial = 0, current) => inicial + current);
+_/
+const total = empleados.map((empleado) => empleado.sueldo).reduce((inicial = 0, current) => inicial + current); // Hace lo mismo pero encadenado.
+};
+
+calcularTotal(empleados); // Suma los sueldos de cada uno. 350.000
+
+Ej2:
+const numeros = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+numeros.filter(numero => numero > 10).map(numero => numero + 30).reduce((inicial = 0, actual) => inicial + actual); // Filtra los numeros mayores a 10, a eso le suma 30 a cada uno y devuelve un nuevo array el cual se transforma en un numero con la sumatoria de todos sus valores (455).
+
+---
+
+Generar array 0 a 100 (rango)
+Array.from(Array(100).keys())
+
+---
+
+## OPERADOR SPREAD
+
+Operador de propagacion, es propio de ECMA. Se usa mucho para parametros dinamicos, cuando no se sabe cuantos parametros puede llegar a recibir en la funcion. ...values
+En otros lenguajes se lo marca como args (C y Java por ej).
+Lo que hace ...values es generar un array con todos los elementos pasados como parametros. Sean los que sean.
+Para acceder a esos valores convertidos en un nuevo array de nombre values.
+Ese ...values se puede llamar como querramos, lo que se indica ahi es el nombre del array que se va a crear en realidad, el operador son los tres puntos.
+De vector pasa a numeros o de numeros pasa a vector. Depende donde se lo pase.
+
+Ej1:
+const sumar = (...values) => values.reduce((inicial = 0, actual) => inicial + actual);
+sumar(10, 20, 30, 40, 50); // 150
+
+Ej2:
+const sumar = (a,...values) => a + values.reduce((inicial = 0, actual) => inicial + actual);
+sumar(10, 20, 30, 40, 50); // 150
+
+## DESTRUCTURACION DE VECTORES
+
+No es pro propiedades (no las tiene) sino que va por la posicion del elemento.
+
+Ej1:
+const comidas = ["hamburguesa", "papas fritas", "ensalada", "fideos"];
+const [entrada, plato principal] = comidas // => Constante entrada = "hamburguesa" (primera posicion), constante plato principal = "papas fritas" (segunda posicion).
+
+Ej2:
+const series = ["GoT", "Breaking Bad", "Adventure Time", "Seinfeld", "Friends"];
+const [serie1, serie2, ...demasSeries] = series; // serie1 = "GOT", serie2 = "Breaking Bad", demasSeries = ["Adventure Time", "Seinfeld", "Friends"]
+const [serie3, serie4, serie5] = demasSeries; // serie3 = "Adventure Time", serie4 = "Seinfeld"m serie5 = "Friends"
+
+## CONVERTIR A VALOR FALSE
+
+Mientras que ! cambia el valor de verdad al opuesto que tenga asignado en ese momento, los !! convierten a false el valor de verdad (sea true, false o undefined).

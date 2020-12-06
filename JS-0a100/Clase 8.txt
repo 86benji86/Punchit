@@ -1,0 +1,201 @@
+## NodeJS
+
+- Entorno de ejecucion de codigo JS que funciona desde el servidor (local o remoto).
+- No hay DOM (porque no hay navegador intermedio) ni window.
+- NPM vs YARN: - NPM (node packet manager) es un gestor de paquetes. A partir de un repositorio externo, clona un paquete. Ej: npm i paquete (para instalar paquetes) -
+  Con node desde la terminal se entra a la aplicacion de nodejs.
+  Interpreta el codigo de la misma forma que desde dentro del navegador. Usa el motor v8 de Google.
+
+Para correr un .js, se va al directorio donde esta el archivo y se hace:
+
+- node archivo.js
+
+## PROGRAMACION ORIENTADA A OBJETOS (POO)
+
+Los elementos son clases. Se hacen instancias de esos objetos que tienen atributos y metodos definidos.
+Los nombres de las clases arrancan con mayusculas.
+JS no es un lenguaje orientado a objetos sino que es orientado a prototipos. Trata todo como un objeto pero no tiene concepto de clases o herencias.
+ECMAScript 6 introdujo el concepto de sugar sintax y asi emular el comportamiento del paradigma orientado a objetos.
+
+- Una clase es un molde a partir del cual se pueden crear objetos.
+- Cada instancia creada a partir de ese molde es unica, con sus atributos propios y metodos.
+- Las funciones que "viven" dentro de una clase (definidas ahi), se llaman metodos de la clase.
+- Para definir metodos dentro de una clase, no hace falta la palabra function. Lo entiende el interprete por el contexto.
+
+Ej:
+class Persona { // Entidad
+// Atributos | Variables
+nombre = "";
+apellido = "";
+edad = 0;
+
+    // Constructor
+    constructor(nombre, apellido, edad = 0) {
+    this.nombre = nombre; // Nombre de esta clase
+    this.apellido = apellido; // Apellido de esta clase
+    this.edad = edad; // Edad de esta clase
+    this.respirar();
+
+    }
+    // Metodos | Funciones
+    respirar(){
+        instrucciones;
+    }
+    presentacion(){
+        `Hola, mi nombre es ${this.nombre} ${this.apellido} y tengo ${this.edad}`;
+    }
+
+}
+
+// Para heredar de persona sus atributos y metodos en una nueva clase a partir de otra existente
+
+class Programador extends Persona { // Herencia
+lenguajes = []
+}
+
+Para instanciar al objeto de una clase se hace:
+
+- const nombre = new Clase();
+  Para llamar un metodo:
+- nombre.metodoDeLaClase. Ej: benji.respirar();
+  Para asignar atributos:
+
+# PATRONES
+
+## PATRON CREACIONAL O DE CONSTRUCTORES
+
+Un patron es una forma probada y eficiente de resolver un problema. El constructor forma parte del patron creacional. En este caso, una forma de crear una instancia de un objeto. Apenas se crea la instancia de la clase, llama automaticamente a ese metodo (no hace falta llamarlo uno). No retorna datos.
+Es un metodo reservado para todas las clases. En general es el primero que se define.
+En el constructor se indica si hay metodos propios de la clase que se tienen que ejecutar al instanciar el objeto.
+Siempre que se quiera acceder a un elemento (atributo o metodo) de la clase, se usa el operador this. Siempre hace referencia a propiedades|metodos que estan dentro de la clase.
+JavaScript solo acepta herencia unica, de una sola clase padre.
+
+### GETTERS Y SETTERS
+
+Si bien no es obligatorio usarlos, es una buena practica (recomendada). Set y Get son propios de las clases.
+En general a los nombres se pone un \_ adelante del nombre (porque generalmente ya hay una propiedad que usa el mismo nombre).
+
+- Conceptualmente estaría definido asi un setter (asigna valor a un atributo)
+  set lenguaje(l) {
+  this.leng.push(l);
+  }
+- Conceptualmente estaría definido asi un getter (devuelve valor de un atributo)
+  get lenguaje(l) {
+  return this.leng;
+  }
+
+Ej:
+this.respirar(); // Llama a respirar() de esta clase, no al respirar() que pueda haber afuera de la clase.
+
+Para saber si un objeto es una instancia de una clase:
+objeto instanceof Clase => true o false.
+
+Para crear una instancia:
+
+- const benji = new Persona("Benjamin", "Dominguez", 34);
+- benji.presentacion(); // Llama al metodo presentacion de la Clase persona en el objeto benji una vez que ya esta instanciado.
+
+Una clase hijo puede tener su propio constructor aparte del extendido|heredado del padre. Ub objeto|instancia de una clase hijo tambien es una instancia de la clase padre.
+
+- super(); Instancia el constructor de la clase padre en la clase hijo. Se le pasan como atributos los datos necesarios del constructor del padre. "Delega" a la clase padre de la que hereda.
+  Evita tener que poner de vuelta todos los this.atributo = atributo; que se pusieron al definir la clase padre.
+
+Ej:
+class Programador extends Persona {
+constructor(nombre, apellido, edad, juego, lenguajes){
+super(nombre, apellido, edad);
+this.juego = juego;
+}
+set lenguaje(l) { //el setter se llama con lenguaje|nombre del metodo setter
+this.leng.push(l);
+}
+get lenguaje(l) { //el getter se llama con lenguaje|nombre del metodo getter
+return this.leng;
+}
+}
+
+Entonces para asignar valor mediante un setter (por fuera de un constructor):
+
+- benji.lenguaje("JavaScript");
+  Para devolver el valor por el setter:
+- benji.lenguaje
+
+### ENCAPSULAMIENTO
+
+Si no le pones nada, devuelve el valor por defecto (vacio) pero es preferible hacerlo con los getter y setters para hacer uso del **encapsulamiento**. Los elementos de afuera no pueden acceder directamente a las propiedas, solo a traves de sus metodos.
+Los atributos pueden ser privados. Para hacerlo asi, se pone un # adelante del nombre.
+Ej: #nombre
+Si se quiere acceder directamente a nombre y no por su getter (incluso si esta previamente seteado), devuelve undefined. Hay que llamar al metodo.
+
+- Ambitos de las variables:
+  - privadas: Son privadas a la clase. No se ven ni acceden desde afuera.
+  - protegidas: Se las marca con el # adelante del nombre. Protegidas del acceso desde afuera. Un elemento hijo puede modificar de la clase hijo si no estan privadas (en js no esta implementado esto ultimo).
+  - publicas: Desde cualquier lado se accede.
+
+## MixIn
+
+A traves de un objeto extra se puede modificar una clase. Esta clase va a recibir un nuevo objeto a traves de otro objeto.
+
+- Object.assign(target.prototype "propiedad", "propiedad", "propiedad);
+  Ej:
+  Object.assign(Clase.prototype, objeto);
+  Modifica el comportamiento de una clase agregandole un objeto nuevo.
+  Es para casos particulares, momentaneos y especifcos. Se evita tocar el codigo propio de la clase.
+  Se usa para test y resolver problemas para los cuales no fuera pensada inicialmente la clase.
+
+## PATRON IFE
+
+Instant Function Execution
+Sirve para definir y ejecutar una funcion en ese momento.
+Ej:
+const funcion = (() => {
+instrucciones;
+});
+
+## PATRON MODULO
+
+Se usa para encapsular funcionalidad
+
+### PATRON MODULO REVELADOR
+
+Alternativa a hacer con clases. Es una forma similar de llamar a la funcion de forma directa. EL parentesis define la funcion y la crea, o sea, devuelve los metodos o el comportamiento que tiene permitido dentro. Retorna cierta informacion:
+Ej:
+const setConfig = (() =>{
+url = "https://rickandmortyapi.com/api";
+
+return {
+listar: () => {
+return "personajes";
+},
+crear: (data) => {
+return "Personaje creado";
+},
+modificar (data) => {
+return "Modificar personaje";
+},
+};
+})();
+
+Lo que devuelve es un objeto en si.
+Al llamar a setConfig devuelve los metodos disponibles.
+Permite aislar funcionalidades del sistema y definir la arquitectura que va a tener el proyecto.
+
+## PATRON CADENA DE RESPONSABILIDADES
+
+Tambien usa constructores para instanciar las clases. En vez de retornar un valor, retorna this. This es la clase instanciada.
+Al retornar el this, puede volver a llamar al objeto con todos sus metodos y atributos almacenados.
+Esto permite acceder directo a los metodos y encadenarlos -**chained methods**-.
+Ej:
+class Clase 1{
+metodo1(v) {
+instruccion;
+return this;
+}
+}
+
+instancia1.metodo1(valor).metodo1(valor).metodo1(valor).val;
+
+- Esto va a ejecutar una vez el metodo y, a ese valor que devuelve, le aplica los sucesivos metodos encadenados hasta el ultimo metodo indicado.
+- No hace falta que se llame siempre al mismo metodo, se pueden encadenar distintos metodos.
+- A su vez, se puede solicitar el valor del atributo solicitandolo directamente (con .val en este caso).
+- Sirve para no almacenar un resultado en una variable y aplicarle otro metodo sino almacenar el resultado con todos los metodos aplicados|concatenados.
