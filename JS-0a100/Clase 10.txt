@@ -1,0 +1,58 @@
+## PACKAGE.JSON
+
+Con npm init iniciamos el control de proyecto de npm que crea el archivo package.json.
+Tiene configuraciones del proyecto y guarda las dependencias del proyecto.
+El punto de entrada es el archivo .js del proyecto.
+
+- index.html es el de arranque
+- Readme.MD el de la descripcion del proyecto.
+
+Nodos dinamicos: Se llenan en funcion de la request a la API (lo que devuelva la API va a ser el contenido). Dentro hay una estructura minima que se va a iterar para generar la pagina. Ej: Una columna por personaje.
+
+## FUNCIONES ASINCRONICAS (ASYNC - AWAIT)
+
+Asincronico podria tomarse como un demorar y despues seguir.
+Se agrega la palabra reservada **async** al momento de definir la funcion adelante de los parametros que va a recibir y **await** adelante de la operacion que a esperar hasta que se resuelva -hasta que no la cumple, no va a la linea de abajo-. Ej: Hasta que el servidor contesta.
+
+- Si una operacion es de tipo await, js pide que la funcion sea de tipo async.
+- Al llamarse la funcion asyncronica, devuelve una promesa (en el momento llamado, puede que despues de llamarla ya se haya resuelto).
+- Siempre que se llame a una funcion async, hay que poner await adelante del nombre para que devuelva el resultad y no la promesa con su estado (Promise {state; "pendind"}). Con await espera que una promesa termine.
+- Cuando se hace un request http, cuando se espera un mail, request a la DB, es recomendable usar async - await.
+
+Las funciones async admiten try y catch, son un handler error. El catch solo se ejecuta en caso de error (se puede hacer uno por cada funcion async).
+
+- Si la funcion falla, el try pasa el error al catch como parametro.
+
+try {
+codigo a ejecutar;
+} catch (err) { // err es el parametro de la funcion. Indistinto que se pone.
+console.error(err); // codigo en caso que no pueda ejecutar el try
+}
+
+## FETCH
+
+Hace peticiones http. GET es el metodo por defecto. fetch(url);
+**Antes** se hacía
+fetch(url)
+.then()
+.then()
+.catch()
+**AHORA** se hace con async - await
+
+## QUERY PARAMS
+
+Se indican con un ?, nombre=valor. Se los separa cuando son varios con un &.
+
+## PASOS
+
+1. Hacer una peticion HTTP al servidor
+   - Se puede setear la direccion como constante const URL = ""
+   - Con **fetch(url)** se puede hacer las peticiones mediante JS. Es una funcion nativa del browser. El tipo de peticion GET es el method por defecto.
+     - Recomendado usar un await antes del fetch, previo async al momento de definir los parametros de la funcion.
+   - La respuesta del servidor, se puede transformar en objeto literal usando el metdo .json(). Con un await adelante se evita que quede en promise pending. Avanza una vez que convirtio a todos los personajes en una entrada del objeto.
+2. Cargar informacion en los nodos. Lo que se define es la carga de la estructura minima y despues por ciclos iterar hasta crear todos los necesarios.
+   - return node en cada iteracion.
+
+## CORS
+
+Politicas que se tienen entre si un cliente y un servidor. Las peticiones que se pueden hacer.
