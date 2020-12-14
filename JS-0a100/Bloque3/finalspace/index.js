@@ -1,32 +1,41 @@
-const URLCHAR = "https://finalspaceapi.com/api/v0/character/?limit=9";
+const URLCHAR = "https://finalspaceapi.com/api/v0/character/";
+const URLQUOTES = "https://finalspaceapi.com/api/v0/quote";
+const URLLOCATION = "https://finalspaceapi.com/api/v0/location";
+const URLEPISODES = "https://finalspaceapi.com/api/v0/episode/";
 let characters = [];
+let quotes = [];
+let locations = [];
+let episodes = [];
 
 // Trae personajes de la API, funcion asincronica, solo avanza a la siguiente linea cuando resuelve la promesa,
 // fetch hace peticion http, await porque es asincronica la funcion. GET es el metodo por defecto de fetch
 // Una vez que tiene la respuesta (en formato stringify), lo convierte a json con los personajes
-const getCharacters = async (url = URLCHAR) => {
+const getEntry = async (url) => {
     try {
     
     const response = await fetch(url); 
     
-    const characters = await response.json();
-    return characters;
+    const entry = await response.json();
+    return entry;
     } catch (error) { // Si falla cualquier linea, error a consola
         console.error(error);
     }
 };
 
 // Crea la columna (estructura minima), previa destructuracion del objeto character y la monta en el nodo html
-const createNode = ({id, img_url, name, status, alias}) => {
+const createNodeCharacter = ({id, img_url, name, status, alias, abilities}) => {
+    // let quotes = getQuote(name);
     const node = `
         <div class="col-md-4 col-12" id="${id}">
             <div class="card mt-2 ml-1 mr-1">
-                <img src="${img_url}" class="img-round-small"/>
-                <div class="card-body ">
+            <img src="${img_url}" class="img-round-small"/>
+            <div class="card-body">
+            <button onClick="delChar(${id})" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h5 class="card-title">${name}</h5>
-                    <p class="card-text">Estado: ${status}</p>
+                    <p class="card-text">Status: ${status}</p>
                     <p class="card-text">Alias: ${alias.length === 0 ? "No tiene" : alias[Math.round(Math.floor(Math.random()*alias.length))]}</p>
-                    <button onClick="delChar(${id})" class="btn btn-danger">Remover</button>
+                    <p class="card-text">Abilities: ${abilities.join(" - ")}</p>
+                    <p class="card-text">Random quote: "${quotes.quote}"</p>
                 </div>
             </div>
         </div>
@@ -34,12 +43,59 @@ const createNode = ({id, img_url, name, status, alias}) => {
     document.getElementById("apiResponse").insertAdjacentHTML("beforeend", node);
 };
 
+const createNodeLocation = ({id, img_url, name, type, inhabitants}) => {
+    const node = `
+        <div class="col-md-4 col-12" id="${id}">
+            <div class="card mt-2 ml-1 mr-1">
+            <img src="${img_url}" class="img-round-small"/>
+            <div class="card-body">
+            <button onClick="delChar(${id})" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="card-title">${name}</h5>
+                    <p class="card-text">Type: ${type}</p>
+                    <p class="card-text">Inhabitants: ${inhabitants.join(" - ")}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    document.getElementById("apiResponse").insertAdjacentHTML("beforeend", node);
+};
+
+const createNodeQuotes = ({id, image, by, quote}) => {
+    const node = `
+        <div class="col-md-4 col-12" id="${id}">
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">${quote}</p>
+                <footer class="blockquote-footer">${by}</footer>
+            </blockquote>
+        </div>
+        `;
+    document.getElementById("apiResponse").insertAdjacentHTML("beforeend", node);
+};
+
 // Itera los nodos y llama a createNode
-const iterateNodes = (node = characters) => node.map((nodo) => createNode(nodo));
+const iterateNodesCharacter = (node = characters) => {
+    clearNodes();
+    node.map((nodo) => createNodeCharacter(nodo));
+};
+
+const iterateNodesLocation = (node = location) => {
+    clearNodes();
+    node.map((nodo) => createNodeLocation(nodo));
+};
+
+const iterateNodesQuotes = (node = episode) => {
+    clearNodes();
+    node.map((nodo) => createNodeQuotes(nodo));
+};
+
+const getQuote = (name) => {
+    let quotesFrom = quotes.filter((quote) => quote.by === name);
+    return quotesFrom[[Math.round(Math.floor(Math.random()*quotesFrom.length))]];
+}
 
 // Cuando se remueven todos los personajes, muestra mensaje y deshabilita la busqueda
 const showMessage = () => {
-    document.querySelector("#sinpersonajes").innerHTML = "No hay personajes para mostrar";
+    document.querySelector("#sincontenido").innerHTML = "No hay contenido para mostrar";
     document.querySelector("#buscar").disabled = true;
 };
 
@@ -50,6 +106,12 @@ const delChar = (id) => {
     characters.length === 0 ? showMessage() : null;
 };
 
+const clearNodes = () => {
+    let node = document.getElementById("apiResponse");
+    node.innerHTML = "";
+};
+
+
 // Busca un personaje
 const findChar = () =>{
     const {value: name} = document.querySelector("#buscar");
@@ -59,17 +121,24 @@ const findChar = () =>{
 };
 
 const start = async () => {
-    document.getElementById("find").addEventListener("click", findChar);
-    document.getElementById("buscar").addEventListener("keyup", function(event) {
-        if (event.code === "Enter") {
-            findChar();
-        }
-    });
-    characters = await getCharacters();
-    // Recorre el objeto y crea de a un nodo por recorrida del mismo
-    iterateNodes(characters);    
-};
-
+    characters = await getEntry(URLCHAR);
+    quotes = await getEntry(URLQUOTES);
+    locations = await getEntry(URLLOCATION);
+    // episodes = await getEntry(URLEPISODES);
+    // document.getElementById("find").addEventListener("click", findChar);
+    // document.getElementById("buscar").addEventListener("keyup", function(event) {
+    //     if (event.code === "Enter") {
+    //         findChar();
+    //     }
+    // });
+    
+    document.getElementById("characters").addEventListener("click", event =>
+    iterateNodesCharacter(characters));
+    document.getElementById("quotes").addEventListener("click", event =>
+    iterateNodesQuotes(quotes));
+    document.getElementById("locations").addEventListener("click", event =>
+    iterateNodesLocation(locations));
+}
 
 // La funcion que dispara el resto
 window.onload = start();

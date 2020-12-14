@@ -2,7 +2,7 @@
   background-image: url("../img/final-space.jpg");
   background-size: cover;
   background-position: top center;
-  height: 500px;
+  height: 430px;
   background-attachment: fixed;
 }
 
@@ -12,4 +12,12 @@
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
 }
