@@ -73,7 +73,7 @@ Ej3:
 characters.forEach(({name, status, gender}) => {
 const obj = {
 nombre: name,
-status, // Si la pripiedad, coincide con el valor, se puede indicar directamente el mismo nombre una sola vez. Por eso en nombre pone los dos.
+status, // Si la propiedad, coincide con el valor, se puede indicar directamente el mismo nombre una sola vez. Por eso en nombre pone los dos.
 }
 console.log(obj);
 console.log("-----");
