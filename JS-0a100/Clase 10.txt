@@ -1,3 +1,5 @@
+# CALLBACKS - PROMISES - ASYNC/AWAIT
+
 ## PACKAGE.JSON
 
 Con npm init iniciamos el control de proyecto de npm que crea el archivo package.json.
@@ -9,10 +11,44 @@ El punto de entrada es el archivo .js del proyecto.
 
 Nodos dinamicos: Se llenan en funcion de la request a la API (lo que devuelva la API va a ser el contenido). Dentro hay una estructura minima que se va a iterar para generar la pagina. Ej: Una columna por personaje.
 
+## CALLBACKS 
+
+Funciones que se ejecutan en caso de que otra cosa pase. Son dependientes de que se de esa situacion (ej: Un click). 
+Se pasa una funcion en otra funcion. 
+funcionPrimaria(callBack, condicionParaEjecutarse) -> La condicion puede ser tiempo por ejemplo. 
+Llama a una funcion despues de X cantidad de tiempo (si se indica)
+Ej1: 
+setTimeout(() => {
+	console.log("3");
+	setTimeout(( => {
+		console.log("2");
+		setTimeout(( => 
+			console.log("1");
+		}, 1000);
+	}, 1000);
+}, 1000);
+
+Puede ser un listener a un click
+Ej2: 
+btn.addEventListener("click", function(e = event) => {
+	console.log("je"); // Se imprime cada vez que haya un click en el boton btn. 
+});
+
+
+
+## PROMISES 
+
+objeto|variable.promises tiene sus promios metodos. 
+Siempre tienen un success path y un failure path (.then y .catch) 
+
 ## FUNCIONES ASINCRONICAS (ASYNC - AWAIT)
 
 Asincronico podria tomarse como un demorar y despues seguir.
 Se agrega la palabra reservada **async** al momento de definir la funcion adelante de los parametros que va a recibir y **await** adelante de la operacion que a esperar hasta que se resuelva -hasta que no la cumple, no va a la linea de abajo-. Ej: Hasta que el servidor contesta.
+
+Una vez que completa lo que esta marcado con await, recien ahi avanza a la siguiente linea de codigo. 
+En lugar de usar .then usa async y await donde tiene que esperar. 
+Usa try {} catch {}
 
 - Si una operacion es de tipo await, js pide que la funcion sea de tipo async.
 - Al llamarse la funcion asyncronica, devuelve una promesa (en el momento llamado, puede que despues de llamarla ya se haya resuelto).
@@ -56,3 +92,4 @@ Se indican con un ?, nombre=valor. Se los separa cuando son varios con un &.
 ## CORS
 
 Politicas que se tienen entre si un cliente y un servidor. Las peticiones que se pueden hacer.
+
