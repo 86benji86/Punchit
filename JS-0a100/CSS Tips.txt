@@ -1,0 +1,8 @@
+- CSS Tricks: Shadows, background text image, Pill or Ellipse shape
+https://www.youtube.com/watch?v=X6tTBxEmZCE
+
+- CSS Position
+https://www.youtube.com/watch?v=jx5jmI0UlXU
+
+- CSS Input Animation
+https://www.youtube.com/watch?v=IxRJ8vplzAo
