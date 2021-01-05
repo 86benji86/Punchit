@@ -1,6 +1,6 @@
 # Apuntes y practica de curso Js0a100 de PunchIT
 
-(https://punchit.com.ar/promo-js.html) [JavaScript de 0 a 100]
+[JavaScript de 0 a 100](https://punchit.com.ar/promo-js.html) 
 
 - Programación estructurada 
 - Programación Funcional 5hs
