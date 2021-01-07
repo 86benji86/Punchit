@@ -1,0 +1,47 @@
+# STORAGE
+
+> payload: lo que se quiere guardar.
+
+Varios tipos de almacenamiento en el navegador (son 3 tipos de API locales). Difiere el tiempo de guardado entre las 3 mas que nada y el alcance.
+
+- Cache: deja los elementos que quiere persistir dentro de la "memoria ram" del navegador, es mas volatil y rapido. Se usa para configuraciones de usuarios entre otras cosas. Una operacion que se esta repitiendo mucho, se almacena en cache. Redis es una DB en cache para esta funcion.
+- Local: la informacion persiste incluso cuando se cierra el browser. No es volatil. Devuelve en string.
+- Sesion: local a la pestaña que lo genera. Si se renueva la pestaña, se pierde. Se pueden establecer ademas tiempos de sesion usando tokens. Devuelve en string.
+- IndexedDB: Base de datos indexada local (Ej: SqlLite). Se usa para agilizar lectura y escritura de operaciones.
+
+Tipos de informacion almacenada:
+
+- Cookies: fragmentos que se definen como texto plano, locales al browser (muy usado en client-server). Es informacion persistente dentro del broser. Siempre que el cliente envia datos al servidor, las cookies van siempre ahi (aunque no se defina de forma implicita). El servidor puede setear cookies en el cliente.
+  - Dentro de la cookie se puede especificar un tiempo de vida (el servidor lo puede hacer), a menos que se renueven, expiran.
+  - Limitadas en tamaño o cantidad de cosas a almacenar) para cosas concretas.
+- Token: Objeto que contiene informacion cifrada. Contiene fragmentos de informacion encriptado bajo una llave (!texto plano). Se tiene que desencriptar para leerse.
+  - El servidor lo valida previa desencriptada.
+  - [JSON Web Token](https://jwt.io) Encriptador - Desencriptador
+
+## ACCESO
+
+Formas de interactuar con almacenamiento de sesion:
+sessionStorage.setItem|getItem|removeItem/clear()
+
+- sessionStorage.setItem('clave', 'valor'); Para setear una nueva clave y su valor. Solo acepta valores primitivos.
+  Para guardar un objeto en formato string, lo "stringifeamos":
+  - sessionStorage.setItem('clave', JSON.stringify(productos));
+  - JSON.parse(productosString); // para hacerlo un objeto nuevamente.
+- sessionStorage.getItem('clave'); // Devuelve un string.
+- sessionStorage.clear(); // Agarra los datos guardados de sesion y borra -un reset-, ej: vaciar carrito.
+- sessionStorage.removeItem('clave'); // Para especificar que elemento remueve.
+
+La primera vez que se entra a una aplicacion, se hace un get al servidor y se guardan los datos en localStorage.
+La segunda vez, revisa si el contenido existe en localStorage. Si existe, no voy al servidor. Si no existe, hago un nuevo get.
+
+## PATRON DE DISEÑO MODULO-REVELADOR
+
+Define variables privadas y metodos publicos.
+Se usa mucho para armado de APIs.
+
+> !!variable convierte al valor de verdad de esa variable para que sea mas facil evaluarlo.
+
+## CORS (Cross-origin resource sharing)
+
+Politicas de control de acceso, son publicas. Se determinan|limitan del lado del server. Quien entra y quien sale.
+Hay CORS por puerto, por protocolo y por dominio.
