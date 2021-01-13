@@ -4,7 +4,8 @@ Esto es asi porque para pasar codigo js se usan las {}
 
 # PROPS|ARGUMENTOS
 
-Forma que tiene la libreria de pasar elementos a un componente hijo. La comunicacion de props siempre es de padre a hijo.
+Forma que tiene la libreria de pasar elementos a un componente hijo. La comunicacion de padre a hijo es mediante props.
+Las props pueden recibir funciones (como los objetos que son).
 A traves de las props se crea un atributo y un valor.
 Ej:
 
@@ -45,6 +46,15 @@ React maneja esto con el concepto de **estado**. Un estado es un objeto que brin
 ## HOOK
 
 Es una funcion que resuelve un problema.
+
+Generacion de estados:
+
+```
+import {useState } from "react";
+const [nombreEstado, setEstado] = useState([]);
+```
+
+setEstado es el encargado de setear los array con objeto dentro de ese estado.
 
 - useState es una funcion que controla el estado por ejemplo. Se recomienda que useState se use para casos sencillos (un contador por ejemplo).
   - const estado = useState(0); - Devuelve un array con posiciones.
@@ -96,7 +106,7 @@ obj = {[dato] : "correo@co.com"}
 
 - Ant Design
 - Chakra
-- React Booststrap
+- [React Booststrap](https://react-bootstrap.github.io/components/alerts)
 - Material
 
 ## TODO PROJECT

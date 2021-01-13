@@ -22,7 +22,7 @@ Comandos:
 - 1. npm i -g create-react-app (Instalar create-react-app de forma global con -g)
 - 2. create-react-app clase01
      o
-- npx create-react-app clase 01 (para bajar la ultima version y ejecutar el comando)
+- npx create-react-app clase01 (para bajar la ultima version y ejecutar el comando)
 - 3. npm start (dentro del directorio de la aplicacion). Esto compila todo el codigo y levanta una aplicacion en http://localhost:3000
   - Si se quiere levantar mas de una aplicacion a la vez, React levanta server en otro puerto.
   - **Si no estan los node_modules, no corre al usar npm start (que salen de dependencies del package.json)**.
@@ -57,7 +57,19 @@ Webpack + Babel <-- index.html (punto de entrada) <-- index.js (monta los compon
 El archivo App.js se edita para armar la aplicacion. Exporta despues para que el index.js lo importe.
 
 Cuando hacemos return de codigo html -un marcado < >-, estamos retornando un componente y no solo un valor o cumplir una unica tarea.
-Los componentes cumplen una tarea unica. Se los escribe una vez y se los llama cada vez que se necesite. El componente en si es una funcion y al momento de llamarlo, se hace con <NombreComponente />. Se cierran todos los tags html (incluso si cierran en si).
+
+Los componentes cumplen una tarea unica. Se los escribe una vez y se los llama cada vez que se necesite. El componente en si es una funcion y al momento de llamarlo, se hace con `<NombreComponente />`. **Se cierran todos los tags html (incluso si cierran en si)**.
+Un componente es una funcion que retorna un marcado.
+
+Se llaman desde por su nombre dentro de llaves, previo importada. Ej:
+
+```
+import Character from "./Character"
+
+  <Character />
+<Footer />
+```
+
 Se puede usar JS tranquilamente en eso que se retorna (en ultima instancia es eso). React usa JS + HTML y lo llama JSX (extension de JS).
 El codigo dinamico JSX se ejecuta dentro de {} y se lo llama expresion. Dentro acepta funciones, condicionales, variables, codigo html, anidar elementos.
 
@@ -70,9 +82,10 @@ Ej:
 
 ```
 const Nombre = () => {
-    return <h2>Hola</2>;
+return <h2>Hola</2>;
 };
 export default Nombre;
+
 ```
 
 Hay dos tipos de exportaciones:
@@ -80,17 +93,17 @@ Hay dos tipos de exportaciones:
 - default: No asigna nombre, simplemente exporta algo, una sola cosa.
 - export const Nombre: Si asigna y obliga a mantener el mismo nombre. Se toma por destructuring. Puede exportar muchas cosas.
 
-Se devuelve un solo nodo por componente. Un <div> con todos los componentes dentro.
-Se puede trabajar con fragmentos (cada nodo que devuelve se toma como un fragmento) y no crea otro <div> para retornar varios nodos.
-Con <React.Fragment> </React.Fragment> envolviendo el marcado, evitamos que se creen <div> de mas por parte de react. Para esto hay que hacer:
+Se devuelve **un solo nodo** por componente. Un `<div>` con todos los componentes dentro.
+Se puede trabajar con fragmentos para devolver mas de un nodo (cada nodo que devuelve se toma como un fragmento) y no crear otro <div> que englobe eso. Se pueden poner fragments donde se quiera y cuantos se quiera.
+Con `<React.Fragment> </React.Fragment>` envolviendo el marcado, evitamos que se creen `<div>` de mas por parte de react. Para esto hay que hacer:
 import {Fragment} from "react";
-Con destructuring se puede hacer directamente <Fragment> </Fragment>
+Con destructuring se puede hacer directamente `<Fragment> </Fragment>`
 Incluso se puede destructurar mas todavia haciendo lo siguiente sin importar React.Fragment:
 <>
 //Esto es un fragment por default
 </>
 
-Importaciones:
+## IMPORTACIONES
 
 - import Modulo from "path/Componente" (previo exportado en default)
 - import { name, lastname } from "patch/Componente" (previo exportado de constantes)
@@ -114,14 +127,22 @@ Y los agrega como dependencias de desarrollo al package.json
 Esto permite ignorar clases estrictas de boostrap que no se usan se las trae al App.js con:
 import { Container, Row, Col } from "react-bootstrap";
 Solo las clases que se quieren usar, las cuales React las toma como componentes. Se envuelve el marcado con:
+
+```
 <Container>
-<Row>
-<Col>
-<Componente1 />
-</Col>
-</Row>
-<Componente2 />
+  <Row>
+    <Col>
+      <Componente1 />
+    </Col>
+  </Row>
+      <Componente2 />
 </Container>
+```
+
 Esto evita div-class y demas.
 
 > Redux es una libreria (implementada en React y Angular) para manejar el estado de la aplicacion y que diferentes componentes se comuniquen entre si. En React no hay (o no habia) forma nativa a nivel global. Ahora esta Context que es nativo de React.
+
+```
+
+```
