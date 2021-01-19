@@ -10,7 +10,7 @@ Dentro del backend hay codigos de respuesta (100, 200, 300, 400). El rango del 3
 Se puede cachear el cotnenido del back en caso de que se repita una peticion igual.
 Del lado del front pasa lo mismo. Mediante intersector se puede generar una cache local para no repetir el contenido de una peticion.
 
-A traves de la version 16 de React se suele trabajar con un esquema funcional.
+A traves de la version 16 de React se suele trabajar con un esquema funcional. Se suele separar a los componentes por entidad (Ej: Characters, Episodes, etc.)
 Hay dos tipos de componentes:
 
 - Estatales: basados en estados|clases. En desuso pero apps viejas pueden tenerlo.
@@ -220,6 +220,7 @@ const [characters, fetching, error] = useFetch("characters");
 ```
 
 > Para destructuring se podria obtener info y results de data (lo que traemos con el fetch) y ponerle un alias a result que sea characters: const {info, results : character} = data;
+> Tambien se podria hacer results as character para indicar un alias.
 
 En el componente donde vamos a usar el custom hook:
 
@@ -245,4 +246,33 @@ const Characters = () => {
         </Row>
     );
 };
+```
+
+## CONSTANTS
+
+Son constantes usadas por toda la aplicacion. Una URL de base de una API es un buen ejemplo.
+Las variables de entorno se podrian generar como constantes.
+Se puede crear un directorio constantes con un index.js dentro donde se definen las constantes a exportar.
+
+```
+export const BASE_URL = "http://rickandmortyapu.com/api";
+```
+
+O
+
+```
+export const environment = {
+    BASE_URL = "http://rickandmortyapu.com/api",
+    PORT: 3000,
+}
+```
+
+En la segunda forma se exportan todas definidas dentro del objeto.
+
+Se las llama despues desde cada archivo de la aplicacion que se las necesite como
+
+```
+import {environment} from "./../constants"
+
+environment.BASE_URL
 ```

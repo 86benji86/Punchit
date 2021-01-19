@@ -63,11 +63,37 @@ const ejemplo = {
 <p style={true ? 'ejemplo1' : 'ejemplo2'} id={id} onClick={deleteWork}>😫</p>
 ```
 
+### CLASES ESTATICAS Y DINAMICAS
+
+Clases estaticas, siempre van a aplicar el mismo estilo
+
+```
+<p className="cuadraditoRojo">Hola</p>
+```
+
+Clases dinamicas permiten hacer evaluaciones para decidir que estilo se va a aplicar.
+
+```
+<p className={status === "Alive" ? "cuadraditoRojo" : "cuadraditoVerde"}>Hola</p>
+```
+
+Incluso se puede hacer uso de funciones dentro de las llaves
+
+```
+const getClass = (status) => {
+    ...;
+}
+
+<p className={getClass(status)}>
+```
+
 ## REACT.MEMO
 
 ```
+
 import React from 'react'
 React.memo(({ prop }) => {
+
 ```
 
 Es un HOC (High order component, componente de orden superior).
@@ -76,3 +102,7 @@ Guarda la referencia del nodo para controlar eso. Si la referencia sigue igual, 
 Por ejemplo se usa en headers y footers que no suelen cambiar.
 
 React.memo se pone en cada componente que sabemos que no va a ser modificado.
+
+```
+
+```

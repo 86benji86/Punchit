@@ -1,0 +1,9 @@
+.footer {
+  background: #f3f2d3;
+  align-content: flex-end;
+}
+
+.footer-text {
+  text-align: right;
+  color: blueviolet;
+}

@@ -70,6 +70,12 @@ import Character from "./Character"
 <Footer />
 ```
 
+Para pasarle parametros a un componente al momento de invocarlo, se hace:
+
+```
+<Componente {parametro} {...todasPropiedadesObjeto} funcion={funcion} />
+```
+
 Se puede usar JS tranquilamente en eso que se retorna (en ultima instancia es eso). React usa JS + HTML y lo llama JSX (extension de JS).
 El codigo dinamico JSX se ejecuta dentro de {} y se lo llama expresion. Dentro acepta funciones, condicionales, variables, codigo html, anidar elementos.
 
@@ -118,6 +124,11 @@ En el index.js solamente nos limitamos a exportar Componentes. En general que se
 export {default} from "./Componente"
 Y en el propio archivo .js del componente cerramos con:
 export default Componente
+
+### REACT FIRST
+
+Hay un principio en React que se conoce como React first. Todas las importaciones de elementos propios de React, se hacen antes que el resto.
+Con las definiciones de hooks, pasa lo mismo. Primero las propias de React (useState, useEffect, etc.) y despues los custom hooks (los que definimos nosotros propios).
 
 ### REACTSTRAP
 
