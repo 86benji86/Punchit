@@ -1,5 +1,5 @@
 Comentarios en React:
-{/_ Comentario _/}
+{/\* Comentario \*/}
 Esto es asi porque para pasar codigo js se usan las {}
 
 # PROPS|ARGUMENTOS
@@ -55,6 +55,8 @@ Generacion de estados:
 import {useState } from "react";
 const [nombreEstado, setEstado] = useState([]);
 ```
+
+nombreEstado es el getter, el que devuelve el valor del estado en el momento que se solicita.
 
 setEstado es el encargado de setear los array con objeto dentro de ese estado.
 

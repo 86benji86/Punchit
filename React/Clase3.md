@@ -4,12 +4,12 @@ En general en las aplicaciones SPA se usan CSR. Lo que requiere posicionamiento,
 
 # TIPOS DE COMPONENTES (e intro testing)
 
-En general se tiene 2 tipos de componentes, unos de **logica** y otros de **presentacion**. Esto facilita aislar mejor el codigo y hacer pruebas unitarias mas especificas.
+En general se tiene 2 tipos de componentes, unos de **logica** y otros de **presentación**. Esto facilita aislar mejor el código y hacer pruebas unitarias mas especificas.
 
-TDD: Test-driven development o Desarrollo guiado por pruebas. Se escriben las pruebas previo al codigo de la aplicacion. Se escribe el codigo hasta que pasa las pruebas. Implica mas inversion de tiempo pero a la larga ahorra recursos a futuro.
-Se puede usar Jest (evalua funcionalidades, si funciona) o React-testing-library (evalua comportamientos, como).
+TDD: Test-driven development o Desarrollo guiado por pruebas. Se escriben las pruebas previo al código de la aplicación. Se escribe el código hasta que pasa las pruebas. Implica mas inversión de tiempo pero a la larga ahorra recursos a futuro.
+Se puede usar Jest (evalúa funcionalidades, si funciona) o React-testing-library (evalua comportamientos, como).
 
-BDD: Behavior-driven development o Desarrollo basado en comportamiento. Como interactuan ciertos componentes entre si y todos integrados. BDD se suele hacer en la instancia final.
+BDD: Behavior-driven development o Desarrollo basado en comportamiento. Como interactúan ciertos componentes entre si y todos integrados. BDD se suele hacer en la instancia final.
 
 Pasos a groso modo:
 Anden componentes > Peticiones correctas > Que se inyecta en el DOM > Verificar que andan elementos de usuario (botones, inputs, etc) > Verificar si se insertan en los estados
@@ -18,10 +18,10 @@ Anden componentes > Peticiones correctas > Que se inyecta en el DOM > Verificar 
 e.preventDefault(); // Cuando se da un evento, previene el comportamiento por default de un nodo.
 ```
 
-Con el operador spread se hace una copia de lo previo. Si se quiere pisar un valor (generando un id nuevo por ejemplo), se lo situa previo de la propiedad que se va a cambiar
+Con el operador spread se hace una copia de lo previo. Si se quiere pisar un valor (generando un id nuevo por ejemplo), se lo sitúa previo de la propiedad que se va a cambiar. Se pasan todas las props de un objeto y sus valores. 
 
 ```
-import shorid from "shortid";
+import shortid from "shortid";
 
 const workObject = {
     ...work, //id:"", work:"tarea", state: false
@@ -34,13 +34,13 @@ Componentes dentro de componentes => Composicion
 Las props bajan, de un padre a un hijo.
 Los eventos pasan de un hijo y se ejecutan en un padre.
 
-Los componentes representan un grafo (un arbol). App.js envuelve al resto de los componentes de la aplicacion, es el nodo comun al resto, la raiz del arbol.
+Los componentes representan un grafo (un árbol). App.js envuelve al resto de los componentes de la aplicación, es el nodo común al resto, la raíz del árbol.
 
 Prop drilling es el paso de de props entre componentes. Un componente hace de intermediario en el paso de una prop entre componentes no conectados directamente. No se recomienda a hacer mas de 1 paso intermedio.
 
 ## EVALUADOR INMEDIATO
 
-Si una condicion se cumple, automaticamente ejecuta una sentencia.
+Si una condición se cumple, automáticamente ejecuta una sentencia.
 Es como un operador ternario pero simplificado (no tiene termino falso). En lugar del ? usa &&
 Ej:
 condicion && sentenciaAutomatica;
@@ -54,7 +54,7 @@ Bootstrap usa styled components.
 
 ### ESTILOS EN LINEA
 
-Dentro de javascript los estilos en linea estan interpretados como json. No es la mejor practica pero se puede llegar a usar.
+Dentro de javascript los estilos en linea están interpretados como json. No es la mejor practica pero se puede llegar a usar.
 
 ```
 const ejemplo = {
@@ -65,13 +65,13 @@ const ejemplo = {
 
 ### CLASES ESTATICAS Y DINAMICAS
 
-Clases estaticas, siempre van a aplicar el mismo estilo
+Clases estáticas, siempre van a aplicar el mismo estilo
 
 ```
 <p className="cuadraditoRojo">Hola</p>
 ```
 
-Clases dinamicas permiten hacer evaluaciones para decidir que estilo se va a aplicar.
+Clases dinámicas permiten hacer evaluaciones para decidir que estilo se va a aplicar.
 
 ```
 <p className={status === "Alive" ? "cuadraditoRojo" : "cuadraditoVerde"}>Hola</p>
@@ -103,6 +103,6 @@ Por ejemplo se usa en headers y footers que no suelen cambiar.
 
 React.memo se pone en cada componente que sabemos que no va a ser modificado.
 
-Con React Developer Tools (extension de Chrome), en las opciones -la rueda- dentro de Components, se puede activar que destaque el componente que se va actualizando a medida que eso pasa.
+Con React Developer Tools (extensión de Chrome), en las opciones -la rueda- dentro de Components, se puede activar que destaque el componente que se va actualizando a medida que eso pasa.
 En React cada componente que cambia su estado, se hace un render del mismo (por esto se puede usar Memo en caso de no querer que se rerenderice todo).
-Rerenderizar implica cargar todo de nuevo, incluso las funcionesno solo el HTML
+Rerenderizar implica cargar todo de nuevo, incluso las funciones no solo el HTML
