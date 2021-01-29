@@ -58,6 +58,7 @@ Los parametros son privados, de alcance de la funcion nomas.
 Se puede especificar que parametros toma la funcion entre parentesis.
 function nombre(parametro){
 instrucciones;
+return ;
 }
 
 Los parametros estan definidos dentro de la funcion (por su scope). Fuera no existen.
