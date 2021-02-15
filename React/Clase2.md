@@ -49,6 +49,8 @@ React maneja esto con el concepto de **estado**. Un estado es un objeto que brin
 
 Es una funcion que resuelve un problema.
 
+[React Hooks Cheatsheet](https://react-hooks-cheatsheet.com/) es una lista de todos los Hooks de react con ejemplos interactivos. Recomendada para revisar. 
+
 Generacion de estados:
 
 ```

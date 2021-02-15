@@ -10,6 +10,10 @@ Dentro del backend hay codigos de respuesta (100, 200, 300, 400). El rango del 3
 Se puede cachear el cotnenido del back en caso de que se repita una peticion igual.
 Del lado del front pasa lo mismo. Mediante intersector se puede generar una cache local para no repetir el contenido de una peticion.
 
+Se usa siempre que lo primero que quieras hacer es una petición http, cuando necesitas cargar algo de movida en la página. Es un get. Se usa inicialmente o cuando se actualiza una dependencia.
+
+Siempre es preferible que las peticiones grandes se hagan desde el lado del back para no sobrecargar todo. Que se devuelva lo más específico posible. 
+
 A traves de la version 16 de React se suele trabajar con un esquema funcional. Se suele separar a los componentes por entidad (Ej: Characters, Episodes, etc.)
 Hay dos tipos de componentes:
 

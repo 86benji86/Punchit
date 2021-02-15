@@ -1,263 +1,111 @@
-# REDUX
+# TEST DRIVEN DEVELOPMENT
 
-Libreria para generar estados.
-Soluciona el mismo problema que Context, el compartir estados entre componentes.
+Desarrollo guiado por pruebas. Primero se escriben las pruebas, luego se escribe el código
 
-Con context se define un objeto global para compartir información y no tener props drilling excesivo.
-Redux hace lo mismo pero de una forma diferente.
+A su vez, también esta el **BDD** - **Desarrollo basado en comportamiento**. Una vez que esta la aplicación, se evalúa el comportamiento general (primero se codea, después se prueba). 
 
-Es libreria agnostica, no es solo para React. Es una libreria para javascript y se puede usar con otros frameworks|librerias.
+Tipos (Piramide):
 
-## ARQUITECTURA FLUX
+- E2E: End to end, de punta a punta.
+- Test de integración: Probar dos o mas componentes para ver como funcionan|reaccionan entre si.
+- Test unitarios: prueba de cada componente individual.
 
-Redux implementa el patrón de diseño Flux. Se supone que es más rápido que el patrón MVC.
+## TEST EN REACT
 
-MVC funciona de la siguiente manera (ida y vuelta constante):
+Dos grandes librerias|frameworks para testing.
 
-- Modelo: interactura con la db
-- Controlador: interactua con el modelo
-- Vista: muestra al usuario lo que devuelve el controlador
+- Enzyme: Testing no tan centrado en el usuario. Se centra en funcionalidades (estados, etc).
 
-Flux funciona de manera distante para evitar ese ida y vuelta constante.
-La comunicación es unidireccional. Se puede tener varios providers
+- React-Testing-Library: Centrada en el usuario (más para el lado del UI). Apareció algo en la interfaz es el aviso más que estados de componentes. 
 
-De una acción -> Se ejecuta un dispatcher (flux) -> Todo lo que está conectado a redux, comparten un store global (un provider) -> Vista (en React)
+  - Se instala desde npm con: npm install --save-dev @testing-library/react
+    - Cuando se hace el build, no se sube a producción. Son para ambiente de desarrollo y se marca con el flag -dev o -D
+    - En el package.json crea un devDependencies para especificar que librerías o paquetes de testing usamos
 
-Se ejecuta a traves del dispatcher que lleva la accion al store global que almacena el estado de la aplicación.
-El store le pasa la información a la vista y actualiza los componentes conectados.
+## PRUEBAS
 
-Context y Redux se pueden implementar en aplicaciones chicas y medianas.
-En aplicacione grandes (redes sociales por ejemplo) se pueden usar otras. Cuando la anidación de componentes es muy grande, Redux|Context ya quedan chicos para usar.
+Se basan en los requerimientos de usuarios pero deben tener a la vez propios. 
 
-> Wouter es una alternativa más liviana a react-router-dom
+Qué debe haber, qué debe pasar en X situación, qué debe hacer la aplicación. 
 
-1. npm i redux react-redux react-router-dom
+Se puede crear dentro de la carpeta de cada componente el archivo de test (ej: Form.js y Form.test.js).
 
-Redux tambien modifica el estado a traves de un dispatcher (como los reducer).
+También crear una carpeta \__test__ y tirar las pruebas dentro, misma nomenclatura de nombre que la forma anterior. 
 
-- Dir Redux >
-  - Dir actions
-  - Dir reducers
-  - store.js
+  - npm run test corre las pruebas, los archivos *.test.js. 
 
-ACTIONS > todo.js
+  ## JEST
 
-```
-export const actions = {
-    ADD_TODO : "ADD_TODO",
-    MODIFY_TODO : "MODIFY_TODO",
-    DELETE_TODO : "DELETE_TODO"
-};
-```
+Jest esta embebido dentro de create-react-app y permite usar funciones nativas de este.
 
-REDUCERS > todo.js
+  ```javascript
+  test("should be true", () => { // Que debe pasar
+  	console.log("prueba");
+      expect(true).toBe(true); // Que evalua 
+  });
+  ```
 
-```
-import {actions} from "./../actions/todo";
+test o it hacen lo mismo. 
 
-const initialState = {
-    todos : [
-        author : {name : "benji"},
-        { id: 1, description : "prueba de algo", status: false}
-    ],
-};
+expect define la prueba en si. 
 
-export default function todoReducer(state = initialState, action); // nuestro reducer
-    switch(action.type){
-        case actions.ADD_TODO:
-            return {
-                ...state, //conserva el estado acá
-                // devuelve lo que ya había dentro por el spread y el payload de todo, lo que está definido arriba en el initialState
-                // si queremos que la tarea nueva se agregue encima de las que ya estan, se pasa primero el payload y después el spread
-                todos : [...state.todos, action.payload.todo],
-            };
-        case actions.DELETE_TODO:
-            return {
-                ...state,
-                // entra en el estado al array de todos y filtra por state id. Trae todos los distintos al que se le está pasando que es el que se borra
-                todos : state.todos.filter((todo) => todo.id !== action.payload.id),
-            };
-        default:
-            return state;
-    };
-};
-```
+.toBe en general se usa para valores primitivos. 
 
-REDUCER > index.js
+.toEquals se usa para comparar valores que sean iguales. 
 
-```
-// combinar todos los reducers que se tiene y los exporta de una vez -genera un único output-
+Si una comparación falla, no pasa a la linea siguiente, corta la prueba ahí. 
 
-import {combineReducers} from "redux";
-import todo from "./todo";
+  ```javascript
+  import {render, screen} from "@testing-library/react";
+  import {ProductForm} from "./../Components/ProductForm";
+  //render retorna un componente renderizado en diferentes puntos
+  //screen imprime el codigo html del componente
+  
+  beforeEach(() => {
+      render(<ProductForm />);
+  });
+  
+  describe("when the page is mounted", => {
+  	it("should exist a title Create product", () => {
+      	console.log("Existe el title");
+      	screen.debug(); //muestra lo que se renderiza en pantalla
+     expect(screen.getByRole("heading", {name : /create product/i})); //Manda una expresion regular entre // y una i para ignorar el case sensitive
+  	});
+  	it("should have three inputs (name, size, description)", () => {
+           expect(screen.getByLabelText(/name/i).toBeInTheDocument();
+           expect(screen.getByLabelText(/size/i)).toBeInTheDocument();
+      })
+  	it("should exist a submit button", () => {
+          const submitBtn = screen.getByRole("button", {name: /submit/i})
+          expect(submitBtn).toBeInTheDocument();
+      });
+  });
 
-export default combineReducers({
-    todo,
-});
-```
+  describe("when the user sends the form empty", () => {
+      it("should show the validation message", () => {
+          const submitBtn = screen.getByRole("button", {name: /submit/i})
+          expect(submitBtn).not.toBeDisabled();
+          fireEvent.click(submitBtn);
+      });
+  });
+  ```
 
-STORE.JS
+Un describe es un agrupador. Puede tener dentro varios test. Describe que tiene que pasar en el grupo de pruebas ese. 
 
-```
-import {createStore, applyMiddleware} from "redux";
+beforeEach() lo que hace antes de cada test.
 
-//rootReducers es el nombre que queramos por como lo exportamos en el index.js
-import rootReducers from "./reducers/";
+afterEach() lo que hace después de cada test.
 
-export default store =createStore(rootReducers, applyMiddleware(redux-thunk));
-```
+.getByRole sirve para acceder por el rol semántico de la etiqueta. Ej: buttons, heading, etc.
 
-La idea es que a partir de todos los reducers que se tenga, se genere un store general a esos.
-combineReducers acepta un objeto como parametro donde ponemos todos los reducers que vamos a pasar -previo haberlos importado a todos-.
+.getByText toma el html directo. Se usa para elementos que no tienen rol definido. 
 
-El dispatch lleva la información al store.
+.toBeInTheDocument() Que el elemento esté en el documento.
 
-Middleware es una función que se interpone entre una ruta y función -entre el state y el dispatch-
-Es el encargado de llevarle a los componentes las funciones adicionales que tenemos en redux.
+.toBeDisabled() Que el elemento esté deshabilitado. Con .not se pueden negar valores|funciones. 
 
-Redux es sincrónico, no soporta promises.
-Hay una librería extra que hace que funcione de forma asincrónica: **redux-thunk**
+fireEvent.click Dispara un evento, en este caso el click en algún elemento. 
 
-- import {thunk} from "thunk";
-- , applyMiddleware(thunk);
-  - Se lo aplica a todos los reducers
+.queryByText verificación para los elementos que esperan texto, que tienen que estar en el documento. 
 
-Exportando en el index los nuevos reducers, ya estamos suscribiendolos a ese store global (el provider).
-
-PAGES > Todos.js
-
-```
-import {Container, Row, Col} from "react-bootstrap";
-import {connect} from "react-redux";
-
-
-const Todos = ({dispatch, todo : {todos}}) => {
-
-const deleteActivity = (id) => {
-    console.log(id);
-    dispatch({type : actions.DELETE_TODO, payload : { id }});
-};
-
-    return (
-        <Container>
-            <Row>
-                <Col>
-                    <h3>Todo's list</h3>
-                    {
-                        todos.length ?
-                        todos.map((todo) => (
-                            <div>
-                                // Se puede separar esto dentro de un componente de presentación aparte
-                                <li>{todo.description}</li>
-                                <button type="button" onClick={() => deleteActivity(todo.id)}>
-                            </div>
-                        ))
-                        ) : (
-                            <h4> No hay tareas</h4>
-                        )
-                    }
-                </Col>
-            </Row>
-        </Container>
-    );
-};
-
-// mapStateToProps recibe el estado de todos los reducers y define que estado particular va a recibirexportar el componente
-const mapStateToProps = (state) => {
-    return {
-        todos : state.todo //retornas el que interesa
-    }
-}
-
-// connect acepta como parametro 2 cosas. El estado y los dispatchers que le brinda a ese componente
-// mapStateToProps solo le pasa lo relevante a todos en este caso. Se puede indicar que pasarle y que no de los reducers
-export default connect(mapStateToProps)(Todos);
-```
-
-APP.JS
-
-```
-import {BrowserRouter, Route, Redirect} from "react-router-dom";
-import {Provider} from "react-redux";
-import store from "./redux/store";
-import AddTodo from "./Components/AddTodo";
-
-function App() {
-    return (
-        <Provider store={store}>
-            <AddTodo />
-            <BrowserRouter>
-                <Route path="./todos.js" component={Todos}>
-                <Redirect path="./todos">
-            </BrowserRouter>
-        </Provider>
-    );
-};
-```
-
-En Context, dentro del componente teníamos que poner useContext para que se suscriba y consuma de este. Así recibe la información.
-En Redux también hay que indicar en el componente que va a consumir del store global.
-
-- Con connect de react-redux hacemos lo mismo que useContext.
-
-COMPONENTS > AddTodo.js
-
-```
-import {Container, Row, Col} from "react-bootstrap";
-import {connect} from "react-redux";
-import {nanoid} from "nanoid/non-secure";
-
-const AddTodo = ({dispatch}) => {
-    const addTask = (e) => {
-        e.preventDefault();
-        const [description] = e.target;
-        const obj = {
-            id : nanoid(),
-            description : description.value,
-            state : false,
-        };
-        dispatch({type: "ADD_TODO", payload : {todo: obj}});
-    };
-};
-
-const AddTodo = () => {
-    return (
-        <Container>
-            <Row>
-                <Col md={6}>
-                    <form onSubmit={addTask}>
-                        <input type="text" placeholder="nueva tarea" />
-                        <button typer="submit">Agregar</button>
-                    </form>
-                </Col>
-            </Row>
-        </Container>
-    );
-};
-
-const mapStateToProps = (state) => {
-    return state;
-};
-
-export default connect(mapStateToProps)(AddTodo);
-```
-
-Poniendo el `<AddTodo />` dentro del `<Provider>`hacemos que reciba el estado y los dispatchers.
-
-## ANIDADO DE FUNCIONES EN JS
-
-const function = () => {
-return
-function2
-return ;
-}
-
-function()() llama al return de function2 definido dentro de la otra función.
-
-## GRAPHQL
-
-No hay peticiones a endpoints. El front le especifica que elementos tiene que traer, puede indicar que quiere traer especifcamente, generando peticiones más chicas (traen solo los datos necesarios y no todos).
-La complejidad de la request queda del lado del front.
-
-Es autodocumentado. Se genera la documentación a medida que se codea en el backend.
-Es similar al TDD para el armado del back. Pide primero el esquema de datos (interfaz) para saber bien que tiene que hacer la aplicación y recien ahí empezar a codear.
+En general lo que serian constantes globales, se suele crear un archivo test.utils 
